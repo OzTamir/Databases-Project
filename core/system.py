@@ -32,16 +32,20 @@ class System(object):
 		Parameters:
 			- config_file (str): the name of the configuration file
 		'''
-		# Create a Config object
-		self.conf = Config(config_file, True)
-		# Create a Database object
-		self.db = Database(self.conf)
+		try:
+			# Create a Config object
+			self.conf = Config(config_file, True)
+			# Create a Database object
+			self.db = Database(self.conf)
+			
+			# Set global variables
+			self.set_global(self.db, self.conf)
+			
+			# Create a UIManager object
+			self.ui_manager = UIManager(self.db, self.conf)
 		
-		# Set global variables
-		self.set_global(self.db, self.conf)
-		
-		# Create a UIManager object
-		self.ui_manager = UIManager(self.db, self.conf)
+		except Exception, e:
+			print('Error in system init. Aborting...')
 
 	def set_global(self, db, config):
 		'''

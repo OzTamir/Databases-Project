@@ -22,8 +22,10 @@ Files:
 	- main_menu.py 			: Includes class for the main menu
 	- menu_base.py 			: Includes the base class for menus
 	- add_menu.py			: Defines a menu that add items
+	- view_menu.py			: Defines a menu that shows items
 '''
 
 from menu_base import MenuBase
 from main_menu import MainMenu
 from add_menu import AddMenu
+from view_menu import ViewMenu

@@ -10,17 +10,17 @@
 #
 ####
 #
-# Filename:		main_menu.py
-# Description:	This file defines the main menu class
+# Filename:		view_menu.py
+# Description:	This file defines a menu that shows items
 #
 ####################################
+
 from menu_base import MenuBase
 
-class MainMenu(MenuBase):
-	''' The main menu class '''
+class ViewMenu(MenuBase):
+	''' Class for a menu that shows items '''
 	def __init__(self, config, ui_manager):
 		options = [
-			('Add new items', ui_manager.add_menu),
-			('View existing items', ui_manager.view_menu)
+			('View Inventory', ui_manager.inventory_view)
 		]
-		super(MainMenu, self).__init__(options, config, True)
+		super(ViewMenu, self).__init__(options, config)

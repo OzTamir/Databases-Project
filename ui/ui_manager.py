@@ -18,10 +18,14 @@
 
 import ui_utils
 from core.utils import error
+
 from Views import NewPurchase
 from Views import NewProduct
+from Views import InventoryView
+
 from Menus import MainMenu
 from Menus import AddMenu
+from Menus import ViewMenu
 import sys
 
 class UIManager(object):
@@ -38,9 +42,11 @@ class UIManager(object):
 		# Set the views
 		self.new_purchase = NewPurchase(db)
 		self.new_product = NewProduct(db)
+		self.inventory_view = InventoryView(db)
 
 		# Set the menus
 		self.add_menu = AddMenu(config, self)
+		self.view_menu = ViewMenu(config, self)
 		self.main_menu = MainMenu(config, self)
 
 		# Keep a log of menus hierarchy

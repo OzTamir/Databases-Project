@@ -1,6 +1,6 @@
 ####################################
 #
-# Databases project - UI Package
+# Databases project - UI.Views Package
 #
 ####
 #

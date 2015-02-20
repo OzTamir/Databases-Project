@@ -1,3 +1,20 @@
+####################################
+#
+# Databases project - Core Package
+#
+####
+#
+# Written by:	Oz Tamir
+# Email:		TheOzTamir@gmail.com
+# Date:			20 - 02 - 2015
+#
+####
+#
+# Filename:		config.py
+# Description:	Defines the configuration object, used to configure the system
+#
+####################################
+
 from __future__ import print_function
 import utils
 import json

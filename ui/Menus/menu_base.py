@@ -1,6 +1,6 @@
 ####################################
 #
-# Databases project - UI Package
+# Databases project - UI.Menus Package
 #
 ####
 #
@@ -10,7 +10,7 @@
 #
 ####
 #
-# Filename:		menus.py
+# Filename:		menu_base.py
 # Description:	This file defines the base class for menus
 #
 ####################################

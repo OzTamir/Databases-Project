@@ -1,3 +1,20 @@
+####################################
+#
+# Databases project - Core Package
+#
+####
+#
+# Written by:	Oz Tamir
+# Email:		TheOzTamir@gmail.com
+# Date:			20 - 02 - 2015
+#
+####
+#
+# Filename:		database.py
+# Description:	Define a database object which is the gateaway to the db server
+#
+####################################
+
 from __future__ import print_function
 import mysql.connector
 from mysql.connector import errorcode

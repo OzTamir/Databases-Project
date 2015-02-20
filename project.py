@@ -1,8 +1,25 @@
+####################################
+#
+# Databases project - Main Package
+#
+####
+#
+# Written by:	Oz Tamir
+# Email:		TheOzTamir@gmail.com
+# Date:			20 - 02 - 2015
+#
+####
+#
+# Filename:		project.py
+# Description:	This file is the file you run to load the system
+#
+####################################
+
 from __future__ import print_function
 from core import System
 
 def main():
-	system = System('my_config.json')
+	system = System('config.json')
 	system.ui_manager()
 
 if __name__ == '__main__':

@@ -1,6 +1,6 @@
 ####################################
 #
-# Databases project - UI Package
+# Databases project - Core Package
 #
 ####
 #

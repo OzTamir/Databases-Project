@@ -1,6 +1,6 @@
 ####################################
 #
-# Databases project - Main Package
+# Databases project - Core Package
 #
 ####
 #
@@ -11,7 +11,7 @@
 ####
 #
 # Filename:		system.py
-# Description:	This is the main object, representing the whole project
+# Description:	This is the main object, representing the whole system
 #
 ####################################
 

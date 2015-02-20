@@ -1,3 +1,9 @@
+# My Files
+my_config.json
+file_header.py
+uni_db.sublime-project
+uni_db.sublime-workspace
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]

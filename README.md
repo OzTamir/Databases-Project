@@ -32,7 +32,7 @@ You can tweak additonal settings by changing the other parameters in the config.
 Those are the things left to do before I submit the project. The sub-lists are randomly ordered.
 
   - Finish the actual project part:
-    - Main menu
+    - Fix the menus loop
     - Viewing the inventory, suppliers, orders, and purchases (All including search option)
     - Adding purchases, orders, products, and if there is time left suppliers.
     

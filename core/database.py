@@ -19,6 +19,8 @@ class Database(object):
 		except mysql.connector.Error as err:
 			utils.error(err, 'Error connecting to the host.', \
 						'Database.__init__()', True)
+		except Exception, e:
+			utils.error(e, '', 'Database.__init__()', True)
 		
 		if self.debug:
 			print('Connected to host.')
@@ -87,6 +89,7 @@ class Database(object):
 
 	def close_connection(self):
 		''' Close the connection '''
+
 		self.conn.close()
 		if self.debug:
 			print('Connection closed.')
@@ -153,6 +156,9 @@ class Database(object):
 
 	def __del__(self):
 		''' Called upon object deletion, make sure the connection to the DB is closed '''
-		if self.conn is not None:
-			self.close_connection()
+		try:
+			if self.conn is not None:
+				self.close_connection()
+		except Exception:
+			pass
 

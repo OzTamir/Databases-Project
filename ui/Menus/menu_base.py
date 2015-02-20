@@ -15,8 +15,8 @@
 #
 ####################################
 
-import ui_utils
-from core.utils import *
+import ui.ui_utils
+import core.utils as utils
 
 class MenuBase(object):
 	'''
@@ -92,7 +92,9 @@ class MenuBase(object):
 			self.options_actions[action]()
 			# Return sucsess code
 			return 0
-		
+		# If we are out of index, the user want to quit
+		except IndexError:
+			return 0
 		except Exception, e:
 			# Print an error message
 			utils.error(e, 'Error while running action %s' % \

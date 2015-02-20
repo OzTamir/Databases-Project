@@ -57,3 +57,27 @@ def error(exception, msg, location, fatal=False, error_code=1):
 	# TODO: Define error codes
 	if fatal:
 		sys.exit(error_code)
+
+
+def read(prompt, type_expected=None):
+	'''
+	Read information from the user, and check for type
+	Parameters:
+		- prompt (str): The message asking the user for input
+		- type_expected (type): the type of which the input should be
+	'''
+	data = input(prompt)
+	# If the caller don't care about the type or the type is correct, return
+	if type_expected is None or isinstance(data, type_expected):
+		return data
+
+	# Else, ask for input again
+	print('Please enter data of type %s' % str(type_expected))
+	return read(prompt, type_expected)
+
+
+
+
+
+
+

@@ -10,17 +10,17 @@
 #
 ####
 #
-# Filename:		main_menu.py
-# Description:	This file defines the main menu class
+# Filename:		add_menu.py
+# Description:	This file defines a menu that add items
 #
 ####################################
 from menu_base import MenuBase
 
-class MainMenu(MenuBase):
-	''' The main menu class '''
+class AddMenu(MenuBase):
+	''' Class for a menu that add items '''
 	def __init__(self, config, ui_manager):
 		options = [
-			('Create a new order', ui_manager.new_order),
-			('Create a new purchase', ui_manager.new_purchase)
+			('Add a new product', ui_manager.new_product),
+			('Add a new purchase', ui_manager.new_purchase)
 		]
-		super(MainMenu, self).__init__(options, config)
+		super(AddMenu, self).__init__(options, config)

@@ -18,12 +18,11 @@
 
 import ui_utils
 from core.utils import error
-from views import NewPurchaseView
-from main_menu import MainMenu
+from Views import NewPurchase
+from Views import NewProduct
+from Menus import MainMenu
+from Menus import AddMenu
 import sys
-
-def lol():
-	print('lol')
 
 class UIManager(object):
 	''' UIManager is the main object used in UI context '''
@@ -37,15 +36,20 @@ class UIManager(object):
 		self.config = config
 
 		# Set the views
-		self.new_purchase = NewPurchaseView(db)
-		self.new_order = lol
+		self.new_purchase = NewPurchase(db)
+		self.new_product = NewProduct(db)
 
 		# Set the menus
+		self.add_menu = AddMenu(config, self)
 		self.main_menu = MainMenu(config, self)
 
 		# Keep a log of menus hierarchy
 		# This is used like a stack of views
 		self.stack = [self.main_menu]
+
+		# Print the title message
+		print(config.title_msg)
+		ui_utils.print_seperetor()
 
 	def __call__(self):
 		'''
@@ -59,18 +63,25 @@ class UIManager(object):
 			# Inform the user
 			print('Shutting down...')
 			# Close the connection to the database
-			self.db.close_connection()
-			# Quit
-			sys.exit(0)
+			try:
+				self.db.close_connection()
+			finally:
+				# Quit
+				sys.exit(0)
 		
-		# Get the view
-		view = self.stack.pop(-1)
-		# Try to call the view
 		try:
+			# Get the view
+			view = self.stack.pop(-1)
+			# Try to call the view
 			view()
 		# If it's not callable, something went wrong and we need to quit
-		except Exception, e:
+		except TypeError, e:
 			error(e, 'Error: View is not callable', 'UIManager.__call__', True)
+		# If something else went wrong...
+		except Exception, e:
+			error(e, '', 'UIManager.__call__', True)
+		finally:
+			self.__call__()
 
 
 

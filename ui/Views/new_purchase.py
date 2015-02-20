@@ -10,19 +10,19 @@
 #
 ####
 #
-# Filename:		views.py
-# Description:	This file defines different views used in the UI context
+# Filename:		new_purchase.py
+# Description:	This file defines NewPurchase
 #
 ####################################
 
-class NewPurchaseView(object):
-	''' A view presented when creating a new purchase entry '''
-	def __init__(self, db):
-		self.db = db
+from view_base import ViewBase
 
-	def __call__(self):
+class NewPurchase(ViewBase):
+	''' A view presented when creating a new purchase entry '''
+
+	def show_view(self):
 		'''
-		Make NewPurchaseView objects callable
+		Implement the abstrect method show_view
 		'''
 		self.new_purchase()
 
@@ -160,21 +160,3 @@ class NewPurchaseView(object):
 
 		# Finally, return a tuple with product's info and the amount
 		return (product, amount)
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

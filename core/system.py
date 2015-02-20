@@ -20,6 +20,10 @@ from config import Config
 from database import Database
 from ui import UIManager
 
+# Import the modules in which there are global variables
+import utils
+import ui.ui_utils as ui_utils
+
 class System(object):
 	''' The main object, representing the BMS (Bakery Managment System)'''
 	def __init__(self, config_file):
@@ -46,10 +50,6 @@ class System(object):
 			- db (Database): The Database object
 			- config (Config): The Config object
 		'''
-		# Import the modules in which there are global variables
-		import utils
-		import ui.ui_utils as ui_utils
-
 		ui_utils.db = db
 		utils.config = config
 

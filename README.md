@@ -29,7 +29,7 @@ You can tweak additonal settings by changing the other parameters in the config.
 ***
 
 ## TODO:
-Those are the things left to do before I submit the project. The list is randomly ordered.
+Those are the things left to do before I submit the project. The sub-lists are randomly ordered.
 
   - Finish the actual project part:
     - Main menu
@@ -41,9 +41,10 @@ Those are the things left to do before I submit the project. The list is randoml
     - Rewrite the architacture of the UI (Split it to menus, table views, input views etc.)
     - Add a main printing handler which will be used as the controller (Singleton)
   
-  - Minor improvments:
+  - Minor improvments (By order of importance):
     - Better documentation
     - Bettre error handling
+    - Change the project structure to a package like (with folders and more files/modolarity)
     - Add a log file
     - Add more options to the configuration file
     - Add a settings view, allowing to change the configuration

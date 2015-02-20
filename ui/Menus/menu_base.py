@@ -23,7 +23,7 @@ class MenuBase(object):
 	A Base class for menus
 	'''
 
-	def __init__(self, options_list, config):
+	def __init__(self, options_list, config, should_loop=False):
 		'''
 		Initialize a menu object
 		Parameters:
@@ -33,12 +33,18 @@ class MenuBase(object):
 		# Save the configuration
 		self.conf = config
 		
+		# The signal returned upon sucsesful run
+		self.should_loop = should_loop
+
 		# Save the options list
 		self.options = options_list
 		
 		# Save the labels and the actions
 		self.options_labels = [option[0] for option in options_list]
 		self.options_actions = [option[1] for option in options_list]
+
+		# This signal when the user wants out
+		self.exit_code = len(self.options_labels) + 1
 
 	def __call__(self):
 		'''
@@ -92,15 +98,17 @@ class MenuBase(object):
 			self.options_actions[action]()
 			# Return sucsess code
 			return 0
+		
 		# If we are out of index, the user want to quit
 		except IndexError:
-			return 0
+			return -1
+		
 		except Exception, e:
 			# Print an error message
 			utils.error(e, 'Error while running action %s' % \
 						str(self.options_labels[action]), 'Menu.do_action()')
 			# Return an error code
-			return -1
+			return -2
 
 	def run_menu(self):
 		'''
@@ -112,12 +120,19 @@ class MenuBase(object):
 		# Get the user's choice
 		choice = self.get_choice()
 
+		# Check if the user is trying to quit
+		if choice == self.exit_code:
+			return
+
 		# Run the asked action
 		ret_signal = self.do_action(choice)
 
 		# If there was an error, try again
-		if ret_signal != 0:
+		if ret_signal == -2:
 			print('Please try again.')
 			return self.run_menu()
 
+		# If we should loop, loop
+		if self.should_loop:
+			return self.run_menu()
 

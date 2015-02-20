@@ -23,4 +23,4 @@ class MainMenu(MenuBase):
 		options = [
 			('Add new items', ui_manager.add_menu)
 		]
-		super(MainMenu, self).__init__(options, config)
+		super(MainMenu, self).__init__(options, config, True)

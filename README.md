@@ -24,12 +24,32 @@ You can tweak additonal settings by changing the other parameters in the config.
 
 ## Project Structure
 ```
-  - README.md: Instructions for how to run the project
-  - config.json: Configuration file
-  - config.py: Configuration Class definition
-  - database.py: Database Class definition (Responsiable for interacting with the MySQL server)
-  - ui.py: Base class for all UI elements
-  - project.py: Main project file
+  - core/
+    - __init__.py   : Package file
+  	- config.py 	  : Defines Config, the configuration object
+  	- database.py 	: Defines Database, which is the wrapper for the MySQL object
+  	- system.py 	  : Defines the System object, which is the main object in this project
+  	- utils.py 		  : Defines various utility functions
+  - ui/
+    - Menus/
+      - __init__.py : Package file
+      - main_menu.py 			: Includes class for the main menu
+      - menu_base.py 			: Includes the base class for menus
+      - add_menu.py			  : Defines a menu that add items
+      - view_menu.py			: Defines a menu that shows items
+    - Views/
+      - __init__.py : Package file
+      - inventory_view.py		: Defines a class that allows to view the inventory
+      - new_product.py 		  : Includes class for new product
+      - new_purchase.py 		: Includes class for new purchase
+      - view_base.py 			: Includes the base class for views
+    - ui_utils.py 	: Includes utility functions for UI
+    - ui_manager.py : Define the UIManager, responsible for handling UI
+	 
+  - README.md   : Instructions for how to run the project
+  - config.json : Configuration file
+  - project.py  : Main project file
+  - .gitignore  : Ignore all of Python's stupid things
 ```
 
 ***

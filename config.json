@@ -1,0 +1,10 @@
+{
+	"db": {
+		"host" : "0.0.0.0",
+		"username" : "your-user-name",
+		"password" : "your-password",
+		"name" : "your-database-name",
+		"port" : 1337
+	},
+	"debug" : false
+}

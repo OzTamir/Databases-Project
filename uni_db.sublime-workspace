@@ -1,0 +1,974 @@
+{
+	"auto_complete":
+	{
+		"selected_items":
+		[
+			[
+				"py",
+				"py"
+			],
+			[
+				"sc",
+				"script"
+			],
+			[
+				"SC",
+				"SCRIPT_NAMES"
+			],
+			[
+				"pyt",
+				"python_procs"
+			],
+			[
+				"s",
+				"SCRIPT_NAME"
+			],
+			[
+				"pro",
+				"proc"
+			],
+			[
+				"p",
+				"pirate"
+			],
+			[
+				"get",
+				"get_directions"
+			],
+			[
+				"is",
+				"is_right"
+			],
+			[
+				"ge",
+				"get_island"
+			],
+			[
+				"go",
+				"got_three"
+			],
+			[
+				"my",
+				"my_islands"
+			],
+			[
+				"pir",
+				"pirates_on_island"
+			],
+			[
+				"num",
+				"num_going_there"
+			],
+			[
+				"de",
+				"debug"
+			],
+			[
+				"cn",
+				"cnt_offset"
+			],
+			[
+				"me",
+				"meeting_pnt"
+			],
+			[
+				"avg",
+				"avg_row"
+			],
+			[
+				"in",
+				"in_range"
+			],
+			[
+				"a",
+				"avg_col"
+			],
+			[
+				"pi",
+				"pirate"
+			],
+			[
+				"lo",
+				"lost_pirates"
+			],
+			[
+				"isl",
+				"islands"
+			],
+			[
+				"re",
+				"rethink_instructions"
+			],
+			[
+				"if",
+				"if_not_busy"
+			],
+			[
+				"dire",
+				"directions"
+			],
+			[
+				"dir",
+				"directions"
+			],
+			[
+				"n",
+				"n"
+			],
+			[
+				"E",
+				"e"
+			],
+			[
+				"ro",
+				"round_one"
+			],
+			[
+				"ta",
+				"target"
+			],
+			[
+				"nu",
+				"NumShips"
+			],
+			[
+				"rq",
+				"required_to_defend"
+			],
+			[
+				"r",
+				"required_to_defend"
+			],
+			[
+				"required_to_defe",
+				"required_to_defend"
+			],
+			[
+				"ma",
+				"max_time_to_attack"
+			],
+			[
+				"pla",
+				"planet_to_attack"
+			],
+			[
+				"sh",
+				"attacking_ships"
+			],
+			[
+				"pl",
+				"planet_to_attack"
+			],
+			[
+				"tar",
+				"target_total"
+			],
+			[
+				"be",
+				"best_target"
+			],
+			[
+				"bes",
+				"best_target_idx"
+			],
+			[
+				"best",
+				"best_target"
+			],
+			[
+				"Num",
+				"NumShips"
+			],
+			[
+				"to",
+				"total_ships_to_battle"
+			],
+			[
+				"Nu",
+				"NumShips"
+			],
+			[
+				"m",
+				"min_to_be_neigbor"
+			],
+			[
+				"com",
+				"compare_func"
+			],
+			[
+				"f",
+				"f_score"
+			],
+			[
+				"cl",
+				"closedset"
+			],
+			[
+				"des",
+				"destination_planet"
+			],
+			[
+				"so",
+				"source_planet"
+			],
+			[
+				"mY",
+				"MyPlanets"
+			],
+			[
+				"it",
+				"item_columns"
+			],
+			[
+				"pur",
+				"purchase_columns"
+			],
+			[
+				"pu",
+				"purchased"
+			],
+			[
+				"Purch",
+				"purchase"
+			],
+			[
+				"T",
+				"Total"
+			],
+			[
+				"mai",
+				"mainUI"
+			],
+			[
+				"ca",
+				"call_main"
+			],
+			[
+				"new",
+				"new_purchase"
+			],
+			[
+				"DB",
+				"DB_NAME"
+			],
+			[
+				"mem",
+				"memo_dict"
+			],
+			[
+				"arg",
+				"argv"
+			],
+			[
+				"w",
+				"what_should_i_run"
+			],
+			[
+				"se",
+				"search_library"
+			],
+			[
+				"res",
+				"res_enum"
+			],
+			[
+				"__p",
+				"__print_results"
+			],
+			[
+				"sea",
+				"Search"
+			],
+			[
+				"e",
+				"enumerator"
+			],
+			[
+				"UI",
+				"UIBase"
+			],
+			[
+				"va",
+				"value"
+			],
+			[
+				"resut",
+				"results"
+			],
+			[
+				"err",
+				"err_msg"
+			],
+			[
+				"en",
+				"entry"
+			],
+			[
+				"co",
+				"column"
+			],
+			[
+				"add",
+				"add_book"
+			],
+			[
+				"c",
+				"conn"
+			],
+			[
+				"clos",
+				"close_connection"
+			],
+			[
+				"bo",
+				"Books"
+			],
+			[
+				"ex",
+				"execute"
+			],
+			[
+				"col",
+				"column"
+			],
+			[
+				"pr",
+				"print_error"
+			],
+			[
+				"v",
+				"view_books"
+			],
+			[
+				"__",
+				"__print_columns"
+			],
+			[
+				"t",
+				"the"
+			],
+			[
+				"con",
+				"connect"
+			],
+			[
+				"L",
+				"LibraryDatebase"
+			],
+			[
+				"print",
+				"print_grid"
+			],
+			[
+				"x",
+				"x"
+			],
+			[
+				"pri",
+				"print_grid"
+			],
+			[
+				"gri",
+				"grid_str"
+			],
+			[
+				"no",
+				"not_event"
+			],
+			[
+				"noti",
+				"notif"
+			],
+			[
+				"notif",
+				"Notifications"
+			],
+			[
+				"Ord",
+				"OrderData"
+			],
+			[
+				"li",
+				"list_items"
+			],
+			[
+				"lis",
+				"lists"
+			],
+			[
+				"par",
+				"paragraph"
+			],
+			[
+				"b",
+				"blacklist_tables"
+			],
+			[
+				"pa",
+				"pars"
+			],
+			[
+				"wik",
+				"wiki"
+			],
+			[
+				"ne",
+				"nextURL"
+			],
+			[
+				"rea",
+				"reached"
+			],
+			[
+				"url",
+				"url"
+			],
+			[
+				"nex",
+				"next_url"
+			],
+			[
+				"y",
+				"y"
+			],
+			[
+				"l",
+				"links"
+			],
+			[
+				"i",
+				"i"
+			],
+			[
+				"lin",
+				"lines"
+			],
+			[
+				"ar",
+				"arr"
+			],
+			[
+				"comp",
+				"compressor"
+			],
+			[
+				"lz",
+				"lz"
+			],
+			[
+				"h",
+				"h"
+			],
+			[
+				"file",
+				"file"
+			],
+			[
+				"str",
+				"str2bin"
+			],
+			[
+				"Te",
+				"TextCompressor"
+			],
+			[
+				"sho",
+				"showError"
+			],
+			[
+				"er",
+				"err_q"
+			],
+			[
+				"sel",
+				"self"
+			],
+			[
+				"Qu",
+				"Queue"
+			],
+			[
+				"fi",
+				"filename"
+			],
+			[
+				"fie",
+				"filename"
+			],
+			[
+				"proc",
+				"processes"
+			],
+			[
+				"pool",
+				"pool_size"
+			],
+			[
+				"on",
+				"onOpen"
+			],
+			[
+				"te",
+				"text_decompress"
+			],
+			[
+				"Huf",
+				"HuffmanCompressor"
+			]
+		]
+	},
+	"buffers":
+	[
+	],
+	"build_system": "Packages/Python/Python.sublime-build",
+	"command_palette":
+	{
+		"height": 87.0,
+		"selected_items":
+		[
+			[
+				"c+",
+				"Set Syntax: C++"
+			],
+			[
+				"setc",
+				"Set Syntax: C++11"
+			],
+			[
+				"pack",
+				"Package Control: Install Package"
+			],
+			[
+				"pac",
+				"Package Control: Install Package"
+			],
+			[
+				"create ",
+				"Create file from Template"
+			],
+			[
+				"cre",
+				"Create file from Template"
+			],
+			[
+				"sse p",
+				"Set Syntax: Python"
+			],
+			[
+				"set ma",
+				"Set Syntax: Markdown"
+			],
+			[
+				"set h",
+				"Set Syntax: HTML"
+			],
+			[
+				"set p",
+				"Set Syntax: Python"
+			],
+			[
+				"set o",
+				"Set Syntax: Objective-C"
+			],
+			[
+				"set ja",
+				"Set Syntax: Java"
+			],
+			[
+				"set sq",
+				"Set Syntax: SQL"
+			],
+			[
+				"pyt",
+				"Set Syntax: Python"
+			],
+			[
+				"js",
+				"Set Syntax: JavaScript"
+			],
+			[
+				"java",
+				"Set Syntax: JavaScript"
+			],
+			[
+				"ja",
+				"Set Syntax: Java"
+			],
+			[
+				"set c",
+				"Set Syntax: C"
+			],
+			[
+				"se p",
+				"Set Syntax: Python"
+			],
+			[
+				"set js",
+				"Set Syntax: JavaScript"
+			],
+			[
+				"set sw",
+				"Set Syntax: Swift"
+			],
+			[
+				"set sy",
+				"Set Syntax: Python"
+			],
+			[
+				"ins",
+				"Package Control: Install Package"
+			],
+			[
+				"install ",
+				"Package Control: Install Package"
+			],
+			[
+				"Snippet: ",
+				"Snippet: self"
+			]
+		],
+		"width": 449.0
+	},
+	"console":
+	{
+		"height": 146.0,
+		"history":
+		[
+			"print 'eh'",
+			"import urllib.request,os,hashlib; h = '7183a2d3e96f11eeadd761d777e62404' + 'e330c659d4bb41d3bdf022e94cab3cd0'; pf = 'Package Control.sublime-package'; ipp = sublime.installed_packages_path(); urllib.request.install_opener( urllib.request.build_opener( urllib.request.ProxyHandler()) ); by = urllib.request.urlopen( 'http://sublime.wbond.net/' + pf.replace(' ', '%20')).read(); dh = hashlib.sha256(by).hexdigest(); print('Error validating download (got %s instead of %s), please try manual install' % (dh, h)) if dh != h else open(os.path.join( ipp, pf), 'wb' ).write(by)",
+			"import urllib2,os,hashlib; h = '7183a2d3e96f11eeadd761d777e62404' + 'e330c659d4bb41d3bdf022e94cab3cd0'; pf = 'Package Control.sublime-package'; ipp = sublime.installed_packages_path(); os.makedirs( ipp ) if not os.path.exists(ipp) else None; urllib2.install_opener( urllib2.build_opener( urllib2.ProxyHandler()) ); by = urllib2.urlopen( 'http://sublime.wbond.net/' + pf.replace(' ', '%20')).read(); dh = hashlib.sha256(by).hexdigest(); open( os.path.join( ipp, pf), 'wb' ).write(by) if dh == h else None; print('Error validating download (got %s instead of %s), please try manual install' % (dh, h) if dh != h else 'Please restart Sublime Text to finish installation')"
+		]
+	},
+	"distraction_free":
+	{
+		"menu_visible": true,
+		"show_minimap": false,
+		"show_open_files": false,
+		"show_tabs": false,
+		"side_bar_visible": false,
+		"status_bar_visible": false
+	},
+	"expanded_folders":
+	[
+		"/Users/OzTamir/Desktop/Uni - Databases Project"
+	],
+	"file_history":
+	[
+		"/Users/OzTamir/Library/Application Support/Sublime Text 3/Packages/SublimeTmpl/Main.sublime-menu",
+		"/Users/OzTamir/Library/Application Support/Sublime Text 3/Packages/Default/Default (OSX).sublime-keymap",
+		"/Users/OzTamir/Downloads/zoma.asm",
+		"/Users/OzTamir/Desktop/zoma_riddle.py",
+		"/Users/OzTamir/Desktop/code/starter_kit/lib/playgame.py",
+		"/Users/OzTamir/Desktop/code/starter_kit/lib/engine.py",
+		"/Users/OzTamir/Desktop/code/starter_kit/run.sh",
+		"/Users/OzTamir/Desktop/code/starter_kit/bots/itamar.py",
+		"/Users/OzTamir/Desktop/code/starter_kit/bots/itamar1.py",
+		"/Users/OzTamir/Desktop/code/starter_kit/bots/sudo.py",
+		"/Users/OzTamir/Desktop/code/starter_kit/bots/four.py",
+		"/Users/OzTamir/Desktop/code/starter_kit/bots/astar.py",
+		"/Users/OzTamir/Desktop/code/starter_kit/bots/oxd.py",
+		"/Users/OzTamir/Desktop/code/starter_kit/bots/demo.py",
+		"/Users/OzTamir/Desktop/code/starter_kit/bots/tut.py",
+		"/Users/OzTamir/Desktop/code/starter_kit/bots/spigul.py",
+		"/Users/OzTamir/Desktop/code/starter_kit/bots/astar.pt",
+		"/Users/OzTamir/Desktop/code/starter_kit/lib/pirates.py",
+		"/Users/OzTamir/Desktop/code/starter_kit/lib/game.py",
+		"/Users/OzTamir/Desktop/code/starter_kit/open_cmd.bat",
+		"/Users/OzTamir/Desktop/code/code.py",
+		"/Users/OzTamir/Dropbox/PlanetWars/play.sh",
+		"/Users/OzTamir/Dropbox/PlanetWars/pathfinding.py",
+		"/Users/OzTamir/Dropbox/PlanetWars/PlanetWars.py",
+		"/Users/OzTamir/Dropbox/PlanetWars/superbot.py",
+		"/Users/OzTamir/Dropbox/PlanetWars/sudo.py",
+		"/Users/OzTamir/Dropbox/PlanetWars/last.py",
+		"/Users/OzTamir/Dropbox/PlanetWars/botter.py",
+		"/Users/OzTamir/Dropbox/PlanetWars/astar.py",
+		"/Users/OzTamir/Dropbox/PlanetWars/aster.py",
+		"/Users/OzTamir/Desktop/astar.py",
+		"/Users/OzTamir/Dropbox/PlanetWars/MyBot.py",
+		"/Users/OzTamir/Dropbox/PlanetWars/log.txt",
+		"/Users/OzTamir/Desktop/אוני - פרויקט סיכום db/ui.py",
+		"/Users/OzTamir/Desktop/אוני - פרויקט סיכום db/database.py",
+		"/Users/OzTamir/Desktop/אוני - פרויקט סיכום db/project.py",
+		"/Users/OzTamir/Downloads/python_starter_package/play.sh",
+		"/Users/OzTamir/Downloads/python_starter_package/PlanetWars.py",
+		"/Users/OzTamir/Desktop/אוני - פרויקט סיכום db/ex5.py",
+		"/Users/OzTamir/Desktop/autonomous.mdown",
+		"/Users/OzTamir/Desktop/calc_catalan.py",
+		"/Users/OzTamir/Desktop/ans.cpp",
+		"/Users/OzTamir/Desktop/riddle.py",
+		"/Users/OzTamir/Dropbox/Uni/Databases and Big Data/תרגיל 5/ui.py",
+		"/Users/OzTamir/Dropbox/Uni/Databases and Big Data/תרגיל 5/database.py",
+		"/Users/OzTamir/Dropbox/Uni/Databases and Big Data/תרגיל 5/ex5.py",
+		"/Users/OzTamir/Desktop/ex5.py",
+		"/Users/OzTamir/Desktop/ui.py",
+		"/Users/OzTamir/Desktop/database.py",
+		"/Users/OzTamir/Desktop/task2.py",
+		"/Users/OzTamir/Dropbox/Uni/Databases and Big Data/תרגיל 5/task2.py",
+		"/Users/OzTamir/Desktop/MJpeg-Dorks.md",
+		"/Users/OzTamir/Desktop/MJpeg Streams.md",
+		"/Users/OzTamir/Desktop/Axis-Streams.md",
+		"/Users/OzTamir/pebblertl/Makefile",
+		"/Users/OzTamir/Desktop/theos.sh",
+		"/Users/OzTamir/Downloads/startbootstrap-sb-admin-1.0.1/index.html",
+		"/Users/OzTamir/Desktop/helper.java",
+		"/Users/OzTamir/Desktop/r.py",
+		"/Users/OzTamir/Dropbox/githubapi.md",
+		"/Users/OzTamir/Dropbox/Uni/Databases and Big Data/תרגיל 4/libraryDB.sql",
+		"/Users/OzTamir/Dropbox/backup_2014_12_06_1720.atl2bkp.zip",
+		"/Users/OzTamir/Dropbox/Uni/Databases and Big Data/תרגילים/תרגיל 3/task5.sql",
+		"/Users/OzTamir/Desktop/back.py",
+		"/Users/OzTamir/Desktop/beautiful_shy.py",
+		"/Users/OzTamir/Desktop/hey.py",
+		"/Users/OzTamir/Desktop/ridle.py",
+		"/Users/OzTamir/Desktop/shy.py",
+		"/Users/OzTamir/Desktop/shy2.py",
+		"/Users/OzTamir/Desktop/shyy.py",
+		"/Users/OzTamir/Desktop/sub_to_main.py",
+		"/Users/OzTamir/Dropbox/Uni/Databases and Big Data/תרגילים/תרגיל 3/task7.sql",
+		"/Users/OzTamir/Dropbox/Uni/Databases and Big Data/homework3.md",
+		"/Users/OzTamir/Dropbox/Uni/Databases and Big Data/תרגילים/תרגיל 3/task8.sql",
+		"/Users/OzTamir/Dropbox/Uni/Databases and Big Data/תרגילים/תרגיל 3/task6.sql",
+		"/Users/OzTamir/Dropbox/Uni/Databases and Big Data/תרגילים/תרגיל 3/task4.sql",
+		"/Users/OzTamir/Dropbox/Uni/Databases and Big Data/תרגילים/תרגיל 3/task3.sql",
+		"/Users/OzTamir/Dropbox/Uni/Databases and Big Data/תרגילים/תרגיל 3/task2.sql",
+		"/Users/OzTamir/Downloads/Northwind/productsBackup.sql",
+		"/Users/OzTamir/Downloads/Northwind/Northwind.MySQL5_3.sql",
+		"/Users/OzTamir/Downloads/Northwind/Northwind.MySQL5_2.sql",
+		"/Users/OzTamir/Downloads/Northwind/Northwind.MySQL5_1.sql",
+		"/Users/OzTamir/PurgeParallelsAccess.sh",
+		"/Users/OzTamir/Programming/Python/PicGenerator/cool_imgs.py",
+		"/Users/OzTamir/Desktop/PebbleMouse/README.md",
+		"/Users/OzTamir/Desktop/PebbleMouse/Pebble App/src/app.js",
+		"/Users/OzTamir/Dropbox/Uni/Cyber/CS101/Ex5/207160276client1.py",
+		"/Users/OzTamir/Dropbox/Uni/Cyber/CS101/Ex5/207160276client2.py",
+		"/Users/OzTamir/Dropbox/Uni/Cyber/CS101/Ex5/207160276server1.py",
+		"/Users/OzTamir/Desktop/PebbleMouse/server.py",
+		"/Users/OzTamir/Desktop/PebbleMouse/mouseUtils.py",
+		"/Users/OzTamir/Desktop/try.js",
+		"/Users/OzTamir/Desktop/this.html",
+		"/Users/OzTamir/Desktop/ex41.java",
+		"/Users/OzTamir/Desktop/ex17.java",
+		"/Users/OzTamir/Desktop/test.py",
+		"/Users/OzTamir/Programming/Protocols/src/ProtocolBase.py",
+		"/Users/OzTamir/Desktop/ctf.py",
+		"/Users/OzTamir/Desktop/tmp.py",
+		"/Users/OzTamir/Desktop/hey.php",
+		"/Users/OzTamir/Desktop/sqlmap/sqlmapapi.py",
+		"/Users/OzTamir/Desktop/this.txt",
+		"/Users/OzTamir/Desktop/t.html",
+		"/Users/OzTamir/Desktop/C++/binary_search.cpp",
+		"/Users/OzTamir/Desktop/regex2.cpp",
+		"/Users/OzTamir/Desktop/example.txt",
+		"/Users/OzTamir/Desktop/regex.cpp",
+		"/Users/OzTamir/Desktop/1example.txt",
+		"/Users/OzTamir/Desktop/binary_search.cpp",
+		"/Users/OzTamir/Library/Application Support/Sublime Text 3/Installed Packages/C++11.sublime-package",
+		"/Users/OzTamir/Desktop/helloworld.cpp",
+		"/Users/OzTamir/Desktop/oZip/setup.py",
+		"/Users/OzTamir/Desktop/oZip/README.rst",
+		"/Users/OzTamir/Desktop/oZip/oZip/main.py",
+		"/Users/OzTamir/Desktop/oZip/oZip/cli.py",
+		"/Users/OzTamir/Desktop/oZip/oZip/core/text.py",
+		"/Users/OzTamir/Desktop/oZip/oZip/core/util.py",
+		"/Users/OzTamir/Desktop/oZip/oZip/core/Compression/lz78_utils.py",
+		"/Users/OzTamir/Desktop/oZip/oZip/core/Compression/base.py",
+		"/Users/OzTamir/Desktop/oZip/oZip/core/Compression/huffman.py",
+		"/Users/OzTamir/Desktop/oZip/oZip/core/Compression/lz78.py",
+		"/Users/OzTamir/Desktop/lorem.txt3.ozip",
+		"/Users/OzTamir/Desktop/temp/lz_utils.py",
+		"/Users/OzTamir/Desktop/oZip/oZip/core/Compression/huffman_utils.py",
+		"/Users/OzTamir/Desktop/lorem.txt",
+		"/Users/OzTamir/Desktop/oZip/oZip/core/Compression/lz.py",
+		"/Users/OzTamir/Desktop/oZip/oZip/core/Compression/lz_utils.py",
+		"/Users/OzTamir/Desktop/lz78.py"
+	],
+	"find":
+	{
+		"height": 26.0
+	},
+	"find_in_files":
+	{
+		"height": 93.0,
+		"where_history":
+		[
+			"/Users/OzTamir/Desktop/code/starter_kit",
+			""
+		]
+	},
+	"find_state":
+	{
+		"case_sensitive": true,
+		"find_history":
+		[
+			"Location",
+			"class Location",
+			"Location",
+			"__(",
+			"*__",
+			" __",
+			"__ ",
+			"###",
+			"**",
+			"***",
+			":=",
+			"//",
+			"ci",
+			"cir",
+			"\" ",
+			"ROLE_PERMISSIONS.ACCOUNTS.UPDATE_COIN_PERMISSION",
+			"hasRolePermission",
+			"coin_apps.market.coin",
+			"coin_apps.market.co",
+			"coinpermissions",
+			"coin_permissions",
+			"coin_permissions st",
+			"coin_permissions",
+			"indices",
+			"iterable",
+			"\\x01\\(",
+			"\\?\\(",
+			"?",
+			"],",
+			"questions",
+			"heavy_path",
+			"h_path",
+			"regex_maker",
+			"match_any",
+			"sub_regex",
+			"'",
+			"star_wars",
+			"h1",
+			"num_pos",
+			"n",
+			"container",
+			"5em",
+			">>> ",
+			"listening_socket"
+		],
+		"highlight": false,
+		"in_selection": false,
+		"preserve_case": false,
+		"regex": false,
+		"replace_history":
+		[
+			"__ (",
+			"* __",
+			"__",
+			"####",
+			"__",
+			"___",
+			"=",
+			"#",
+			"i",
+			"lst",
+			"path",
+			"heavy_path",
+			"get_regex",
+			"dotify",
+			"subparts",
+			"\"",
+			"terminal_text",
+			"h2",
+			"number_of_paint_options",
+			"m",
+			"",
+			"server"
+		],
+		"reverse": false,
+		"show_context": false,
+		"use_buffer2": false,
+		"whole_word": false,
+		"wrap": false
+	},
+	"groups":
+	[
+		{
+			"sheets":
+			[
+			]
+		}
+	],
+	"incremental_find":
+	{
+		"height": 26.0
+	},
+	"input":
+	{
+		"height": 0.0
+	},
+	"layout":
+	{
+		"cells":
+		[
+			[
+				0,
+				0,
+				1,
+				1
+			]
+		],
+		"cols":
+		[
+			0.0,
+			1.0
+		],
+		"rows":
+		[
+			0.0,
+			1.0
+		]
+	},
+	"menu_visible": true,
+	"output.exec":
+	{
+		"height": 197.0
+	},
+	"output.find_results":
+	{
+		"height": 112.0
+	},
+	"project": "uni_db.sublime-project",
+	"replace":
+	{
+		"height": 48.0
+	},
+	"save_all_on_build": true,
+	"select_file":
+	{
+		"height": 0.0,
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"select_project":
+	{
+		"height": 0.0,
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"select_symbol":
+	{
+		"height": 0.0,
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"selected_group": 0,
+	"settings":
+	{
+	},
+	"show_minimap": true,
+	"show_open_files": false,
+	"show_tabs": true,
+	"side_bar_visible": true,
+	"side_bar_width": 150.0,
+	"status_bar_visible": true,
+	"template_settings":
+	{
+	}
+}

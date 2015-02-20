@@ -1,4 +1,5 @@
 from __future__ import print_function
+import utils
 import json
 import sys
 
@@ -31,16 +32,8 @@ class Config(object):
 			return json_data
 
 		except Exception, e:
-			# Inform the user about the error
-			print('Error while reading configuration file.')
-			
-			# If we are in debug mode, print details about the error
-			if debug:
-				print('Error Type: %s' % str(type(e)))
-				print('Error Data: %s' % e.message)
-
-			# Quit with error code
-			sys.exit(1)
+			# Inform the user about the error and quit
+			utils.error(e, 'Error while reading configuration file.', 'get_config', True)
 
 	def __getattr__(self, name):
 		'''

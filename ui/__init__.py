@@ -16,13 +16,19 @@
 ####################################
 
 '''
-This package contains all the file, classes and functions used in the context of User Interface.
+This package contains all the file, classes and functions used in the
+context of User Interface.
 
 Files:
-	- ui.py : Includes the base classes for the UI
-	- views.py : Includes definitions of views
-	- menus.py : Includes definitions of menues
+	- ui.py 		: Includes the base classes for the UI
+	- views.py 		: Includes definitions of views
+	- menu_base.py 	: Defines the base class for menus
+	- main_menu.py 	: Defines the main menu class
 
 '''
 
-from ui import UIBase
+import ui_utils
+from views import NewPurchaseView
+from menu_base import MenuBase
+from main_menu import MainMenu
+from ui_manager import UIManager

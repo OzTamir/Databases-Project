@@ -3,6 +3,7 @@ import mysql.connector
 from mysql.connector import errorcode
 from mysql.connector.errors import *
 import sys
+import utils
 
 class Database(object):
 	def __init__(self, config):#dbhost, dbuser, dbpass, dbname, debug=False, port=3306):
@@ -16,9 +17,9 @@ class Database(object):
 		try:
 			self.conn = self.get_connector(config.username, config.password, config.port)
 		except mysql.connector.Error as err:
-			print(str(err))
-			print('Error connecting to the host.')
-			sys.exit(1)
+			utils.error(err, 'Error connecting to the host.', \
+						'Database.__init__()', True)
+		
 		if self.debug:
 			print('Connected to host.')
 		# Get the cursor
@@ -125,8 +126,8 @@ class Database(object):
 				# Commit the changes to the remote DB
 				self.commit()
 		except Exception, e:
-			if self.debug:
-				print('Error: %s' % str(e))
+			# Print exception details if in debug mode
+			utils.error(e, '', 'Database.insert')
 			# Rollback the changes from the current transaction
 			self.rollback()
 			raise ValueError("Can't add entry, please try again (maybe with different values?)")

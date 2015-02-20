@@ -1,13 +1,13 @@
 from __future__ import print_function
 from config import Config
 from database import *
-from ui import *
+from ui import UIBase
 
 class ProjectUI(UIBase):
 	''' UI For DB project '''
-	def __init__(self, db):
+	def __init__(self, db, config):
 		self.options = {1 : self.new_order, 2 : self.new_purchase}
-		UIBase.__init__(self, db, 'Bakery Managment System v1 - Oz Tamir')
+		UIBase.__init__(self, db, config)
 
 	def mainUI(self):
 		''' Display a menu '''
@@ -25,7 +25,7 @@ class ProjectUI(UIBase):
 def main():
 	conf = Config('config.json', True)
 	db = Database(conf)
-	ui = ProjectUI(db)
+	ui = ProjectUI(db, conf)
 
 
 if __name__ == '__main__':

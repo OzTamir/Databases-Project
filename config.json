@@ -6,5 +6,6 @@
 		"name" : "your-database-name",
 		"port" : 1337
 	},
-	"debug" : false
+	"debug" : false,
+	"title_msg" : "Bakery Managment System v1 - Oz Tamir"
 }

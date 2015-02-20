@@ -39,11 +39,12 @@ Those are the things left to do before I submit the project. The sub-lists are r
   - Move towards MVC design pattren:
     - Add a class to handle errors and present it to the user (Singleton)
     - Rewrite the architacture of the UI (Split it to menus, table views, input views etc.)
-    - Add a main printing handler which will be used as the controller (Singleton)
+    - Add a main I/O (reading input and printing output) handler which will be used as the controller and 
+      will make sure that we go back to the menu whenever -1 is being recived as input(Singleton)
   
   - Minor improvments (By order of importance):
     - Better documentation
-    - Bettre error handling
+    - Bettre error handling (Exit status codes need to mean something)
     - Change the project structure to a package like (with folders and more files/modolarity)
     - Add a log file
     - Add more options to the configuration file

@@ -21,6 +21,7 @@ class AddMenu(MenuBase):
 	def __init__(self, config, ui_manager):
 		options = [
 			('Add a new product', ui_manager.new_product),
-			('Add a new purchase', ui_manager.new_purchase)
+			('Create a new purchase', ui_manager.new_purchase),
+			('Create a new order', ui_manager.new_order)
 		]
 		super(AddMenu, self).__init__(options, config)

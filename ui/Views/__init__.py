@@ -24,6 +24,7 @@ Files:
 	- purchase_view.py		: Defines a class that allows the user to view purchases
 	- new_product.py 		: Includes class for new product
 	- new_purchase.py 		: Includes class for new purchase
+	- new_order.py			: Defines a class for new orders
 	- view_base.py 			: Includes the base class for views
 '''
 
@@ -32,6 +33,7 @@ from view_base import ViewBase
 # Views for adding data
 from new_product import NewProduct
 from new_purchase import NewPurchase
+from new_order import NewOrder
 
 # Views for viewing data
 from inventory_view import InventoryView

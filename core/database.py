@@ -275,6 +275,35 @@ class Database(object):
 		query = query.replace("'", '')
 		return self.__iter_results(query, 'search')
 
+
+	def get_single_result(self, table, column, value):
+		'''
+		Get a single result from a table
+		Parameters:
+			- table (str): the table to search in
+			- column (str): the column to search on
+			- value (str): the value to match for
+		'''
+		# Get the entries
+		try:
+			# Sometimes an unread result will raise an exception
+			self.clear_cursor()
+			# Get the values from the table as a list
+			search_results = [x for x in self.search(table, column, str(value), False)]
+
+		# And sometimes MySQL will raise an InterfaceError, requiring us
+		# to run the search again.
+		except InterfaceError:
+			# Get the values from the table as a list
+			search_results = [x for x in self.search(table, column, str(value), False)]
+
+		# Make sure we have a product
+		if len(search_results) == 0:
+			return None
+
+		# Return the first value
+		return search_results[0]
+
 	def __del__(self):
 		'''
 		Called upon object deletion, make sure the connection

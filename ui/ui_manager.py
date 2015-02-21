@@ -23,6 +23,7 @@ from core.utils import error
 # Import Views
 from Views import NewPurchase
 from Views import NewProduct
+from Views import NewOrder
 from Views import InventoryView
 from Views import SuppliersView
 from Views import PurchaseView
@@ -52,6 +53,7 @@ class UIManager(object):
 		self.inventory_view = InventoryView(db, config)
 		self.suppliers_view = SuppliersView(db)
 		self.purchase_view = PurchaseView(db, config)
+		self.new_order = NewOrder(db, config)
 
 		# Set the menus
 		self.add_menu = AddMenu(config, self)

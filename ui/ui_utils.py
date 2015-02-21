@@ -124,7 +124,6 @@ def show_table(titles, rows, table_name=None):
 		- rows (iterable)	: Sequence of rows in the table, 
 							  must contain len(header) items.
 	'''	
-
 	# Print a newline as a seperetor
 	print('')
 
@@ -132,6 +131,7 @@ def show_table(titles, rows, table_name=None):
 	get_biggest = lambda x: max([max([str(row[x]) for row in rows], key=len),\
 							titles[x]], key=len)
 
+	print(titles)
 	# Find the biggest string in each column
 	biggest_strings = [len(get_biggest(i)) for i, x in enumerate(titles)]
 	

@@ -70,7 +70,7 @@ class NewPurchase(ViewBase):
 		# Get the products in the purchase
 		while not product is None:
 			# Get the next products
-			product = self.get_product_in_purchase()
+			product = self.get_product_in_purchase(self)
 			# Add it to the purchase list
 			products_in_purchase.append(product)
 
@@ -112,6 +112,8 @@ class NewPurchase(ViewBase):
 				print('Error: %s' % str(e))
 				continue
 
+	# This method is used in new_order.py, so I made it static
+	@staticmethod
 	def get_product_in_purchase(self):
 		'''
 		Get the details of one product included in the purchase.

@@ -16,16 +16,22 @@
 #
 ####################################
 
+# Import utilities
 import ui_utils
 from core.utils import error
 
+# Import Views
 from Views import NewPurchase
 from Views import NewProduct
 from Views import InventoryView
+from Views import SuppliersView
 
+# Import Menus
 from Menus import MainMenu
 from Menus import AddMenu
 from Menus import ViewMenu
+
+# Import sys for sys.exit (avoided 'from sys import exit' to maintain standart)
 import sys
 
 class UIManager(object):
@@ -43,6 +49,7 @@ class UIManager(object):
 		self.new_purchase = NewPurchase(db)
 		self.new_product = NewProduct(db)
 		self.inventory_view = InventoryView(db)
+		self.suppliers_view = SuppliersView(db)
 
 		# Set the menus
 		self.add_menu = AddMenu(config, self)
@@ -63,14 +70,20 @@ class UIManager(object):
 		This will run the top (last) item from the stack list
 		and will pop it. If the stack is empty, it will quit the program.
 		'''
+		
 		# If the view stack is empty, than there is nowhere to return to and we
 		# will quit the program.
 		if len(self.stack) == 0:
 			# Inform the user
 			print('Shutting down...')
+			
 			# Close the connection to the database
+			# This is done inside a try block because sometimes, 
+			# MySQL won't quit and an exception will be raised
 			try:
 				self.db.close_connection()
+			
+			# Since we're quiting, there is no point in handling any exceptions
 			finally:
 				# Quit
 				sys.exit(0)
@@ -80,12 +93,16 @@ class UIManager(object):
 			view = self.stack.pop(-1)
 			# Try to call the view
 			view()
+		
 		# If it's not callable, something went wrong and we need to quit
 		except TypeError, e:
 			error(e, 'Error: View is not callable', 'UIManager.__call__', True)
+		
 		# If something else went wrong...
 		except Exception, e:
 			error(e, '', 'UIManager.__call__', True)
+		
+		# Make a recursive call to reach the stopping condition
 		finally:
 			self.__call__()
 

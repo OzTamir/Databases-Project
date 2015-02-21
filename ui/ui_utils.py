@@ -115,6 +115,65 @@ def __print_table(table):
 	table_enum = enumerate(db.iter_entries(table))
 	__print_results(table, table_enum)
 
+
+def show_table(titles, rows, table_name=None):
+	'''
+	Print a pretty, formatted and spaced table
+	Parameters:
+		- header (iterable)	: Sequence with titles for each column
+		- rows (iterable)	: Sequence of rows in the table, 
+							  must contain len(header) items.
+	'''							
+	# Lambda function to find the biggest string for each column
+	get_biggest = lambda x: max([max([str(row[x]) for row in rows], key=len),\
+							titles[x]], key=len)
+
+	# Find the biggest string in each column
+	biggest_strings = [len(get_biggest(i)) for i, x in enumerate(titles)]
+	
+
+	# Print seperetor (the size of the biggest string + 3 for ' | ' seperetors)
+	print_seperetor(sum(biggest_strings) + (3 * (len(titles) + 1)))
+
+	# If we have a table name, print it
+	if table_name is not None:
+		# Width of table - place for '|' at start at end of line
+		size = (sum(biggest_strings) + (3 * (len(titles) + 1))) - 4
+		print(' |%s|' % str(table_name).center(size, ' '))
+
+	# Print seperetor (the size of the biggest string + 3 for ' | ' seperetors)
+	print_seperetor(sum(biggest_strings) + (3 * (len(titles) + 1)))
+
+	# Craft header for the table
+	line = ['']
+	for idx, header in enumerate(titles):
+		# We use str.center to have nice formatting and spacing
+		line.append(str(header).center(biggest_strings[idx], ' '))
+
+	# Append empty string to have another ' | ' at the end of the line
+	line.append('')
+	
+	# Print the header of the table
+	print(' | '.join(line))
+
+	# Print seperetor (the size of the biggest string + 3 for ' | ' seperetors)
+	print_seperetor(sum(biggest_strings) + (3 * (len(titles) + 1)))
+
+	# Print the rows
+	for row in rows:
+		line = ['']
+		# Craft a line
+		for idx, item in enumerate(row):
+			# We use str.center to have nice formatting and spacing
+			line.append(str(item).center(biggest_strings[idx]))
+		# Append empty string to have another ' | ' at the end of the line
+		line.append('')
+		# Print the line
+		print(' | '.join(line))
+
+	# Print seperetor (the size of the biggest string + 3 for ' | ' seperetors)
+	print_seperetor(sum(biggest_strings) + (3 * (len(titles) + 1)))
+
 def print_seperetor(size=10):
 	'''
 	Print a seperetor to sepreate different sections of the UI

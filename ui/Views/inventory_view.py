@@ -70,7 +70,7 @@ class InventoryView(ViewBase):
 		# Get more details for each product in inventory
 		for idx, product in enumerate(entries):
 			# Get the product's details
-			product_details = self.get_product(product[PRODUCT_IDX])
+			product_details = self.get_product(self, product[PRODUCT_IDX])
 			# Make sure we found the product
 			if product_details is None:
 				continue
@@ -83,33 +83,12 @@ class InventoryView(ViewBase):
 			# Add as a tuple in the rows list
 			rows[idx] = (product_details[NAME_IDX], product_amount, product_worth, product_supplier)
 
-		# Lambda function to find the biggest string for each column
-		get_biggest = lambda x: max([max([str(row[x]) for row in rows], key=len),\
-								INVENTORY_VIEW_COLUMNS[x]], key=len)
+		# Print the table
+		show_table(INVENTORY_VIEW_COLUMNS, rows, 'Inventory')
 
-		# Find the biggest string in each column
-		biggest_strings = [len(get_biggest(i)) for i, x in enumerate(INVENTORY_VIEW_COLUMNS)]
-		
-		# Craft header for the table
-		line = []
-		for idx, header in enumerate(INVENTORY_VIEW_COLUMNS):
-			line.append(str(header).center(biggest_strings[idx], ' '))
-
-		# Print the header of the table
-		print(' | '.join(line))
-
-		# Print the rows
-		for product in rows:
-			line = []
-			# Craft a line
-			for idx, item in enumerate(product):
-				line.append(str(item).center(biggest_strings[idx]))
-			
-			# Print the line
-			print(' | '.join(line))
-
-
-
+	# Because we need this function in suppliers_view, I made it a 
+	# static method in order to avoid duplicating the code.
+	@staticmethod
 	def get_product(self, pid):
 		'''
 		Get a single prdouct from the products table
@@ -135,7 +114,7 @@ class InventoryView(ViewBase):
 		SUPPLIER_NAME_IDX = 1
 
 		# Get the suppliers from the table as a list
-		search_results = list(self.db.search('Supplieres', 'SID', str(sid), False))
+		search_results = list(self.db.search('Suppliers', 'SID', str(sid), False))
 
 		# Make sure we have a supplier
 		if len(search_results) == 0:

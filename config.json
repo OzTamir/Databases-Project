@@ -4,7 +4,7 @@
 		"username" : "your-user-name",
 		"password" : "your-password",
 		"name" : "your-database-name",
-		"port" : 1337
+		"port" : 3306
 	},
 	"debug" : false,
 	"title_msg" : "Bakery Managment System v1 - Oz Tamir"

@@ -21,6 +21,7 @@ class ViewMenu(MenuBase):
 	''' Class for a menu that shows items '''
 	def __init__(self, config, ui_manager):
 		options = [
-			('View Inventory', ui_manager.inventory_view)
+			('View Inventory', ui_manager.inventory_view),
+			('View Suppliers', ui_manager.suppliers_view)
 		]
 		super(ViewMenu, self).__init__(options, config)

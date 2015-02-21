@@ -62,14 +62,14 @@ You can tweak additonal settings by changing the other parameters in the config.
 ***
 
 ## TODO:
-Those are the things left to do before I submit the project. The sub-lists are randomly ordered.
+Those are the things left to do before I submit the project. The sub-lists are by order of importance.
 
   - Finish the actual project part:
-    - Viewing products, and orders
-    - Creating new orders, categories
-    - Editing inventory
+    - Editing/Deleting inventory, products, categories, suppliers, orders
+    - Viewing products, categories
+    - Creating categories
   
-  - Minor improvments (By order of importance):
+  - Minor improvments :
     - Better documentation
     - Bettre error numbring (Exit status codes need to mean something)
     - Add a settings view, allowing to change the configuration

@@ -24,6 +24,7 @@ from core.utils import error
 from Views import NewPurchase
 from Views import NewProduct
 from Views import NewOrder
+from Views import OrdersView
 from Views import InventoryView
 from Views import SuppliersView
 from Views import PurchaseView
@@ -47,13 +48,17 @@ class UIManager(object):
 		# Set the Configuration object
 		self.config = config
 
-		# Set the views
+		# Set the views (creating)
 		self.new_purchase = NewPurchase(db)
 		self.new_product = NewProduct(db)
+		self.new_order = NewOrder(db, config)
+		
+		# Set the views (viewing)
 		self.inventory_view = InventoryView(db, config)
 		self.suppliers_view = SuppliersView(db)
 		self.purchase_view = PurchaseView(db, config)
-		self.new_order = NewOrder(db, config)
+		self.orders_view = OrdersView(db, config)
+
 
 		# Set the menus
 		self.add_menu = AddMenu(config, self)

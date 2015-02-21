@@ -123,7 +123,12 @@ def show_table(titles, rows, table_name=None):
 		- header (iterable)	: Sequence with titles for each column
 		- rows (iterable)	: Sequence of rows in the table, 
 							  must contain len(header) items.
-	'''	
+	'''
+
+	# If we have no data, create a NULL line
+	if len(rows) == 0:
+		rows.append(['NULL' for i in titles])
+
 	# Print a newline as a seperetor
 	print('')
 
@@ -131,7 +136,6 @@ def show_table(titles, rows, table_name=None):
 	get_biggest = lambda x: max([max([str(row[x]) for row in rows], key=len),\
 							titles[x]], key=len)
 
-	print(titles)
 	# Find the biggest string in each column
 	biggest_strings = [len(get_biggest(i)) for i, x in enumerate(titles)]
 	

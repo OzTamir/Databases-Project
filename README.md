@@ -43,11 +43,14 @@ You can tweak additonal settings by changing the other parameters in the config.
     
     - Views/
       - __init__.py         : Package file
-      - inventory_view.py		: Defines a class that allows to view the inventory
+      - inventory_view.py   : Defines a class that allows to view the inventory
       - suppliers_view.py   : Defines a class that allows the user to view suppliers
-      - new_product.py 		  : Includes class for new product
-      - new_purchase.py 		: Includes class for new purchase
-      - view_base.py 			  : Includes the base class for views
+      - orders_view.py      : Defines a class that allows the user to view orders
+      - purchase_view.py    : Defines a class that allows the user to view purchases
+      - new_product.py      : Includes class for new product
+      - new_purchase.py     : Includes class for new purchase
+      - new_order.py        : Defines a class for new orders
+      - view_base.py        : Includes the base class for views
     
     - ui_utils.py 	: Includes utility functions for UI
     - ui_manager.py : Define the UIManager, responsible for handling UI
@@ -71,9 +74,9 @@ Those are the things left to do before I submit the project. The sub-lists are b
   
   - Minor improvments :
     - Better documentation
-    - Bettre error numbring (Exit status codes need to mean something)
-    - Add a settings view, allowing to change the configuration
     - Add a first-time setup screen, allowing to set initial setting for the config file
+    - Add a settings view, allowing to change the configuration
+    - Bettre error numbring (Exit status codes need to mean something)
     - Add more options to the configuration file
     - Add a log file
   

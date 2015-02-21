@@ -7,5 +7,6 @@
 		"port" : 3306
 	},
 	"debug" : false,
-	"title_msg" : "Bakery Managment System v1 - Oz Tamir"
+	"title_msg" : "Bakery Managment System v1 - Oz Tamir",
+	"currency" : "$"
 }

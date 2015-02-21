@@ -15,6 +15,8 @@
 #
 ####################################
 
+from mysql.connector.errors import *
+
 from view_base import ViewBase
 from ui.ui_utils import *
 
@@ -48,7 +50,7 @@ class InventoryView(ViewBase):
 
 		#### Constants ####
 		
-		INVENTORY_VIEW_COLUMNS = ('Name', 'Amount', 'Stock Worth', 'Supplier')
+		INVENTORY_VIEW_COLUMNS = ('Product', 'Amount In Stock', 'Price Per Unit', 'Stock Worth', 'Supplier')
 
 		# For Inventory Table
 		INVENTORY_TABLE = 'Inventory'
@@ -77,11 +79,15 @@ class InventoryView(ViewBase):
 			# Get the amount in inventory
 			product_amount = product[UNITS_IDX]
 			# Get the worth of the stock of the product
-			product_worth = product_amount * product_details[PRICE_PER_UNIT_IDX]
+			product_worth = str(product_amount * \
+							product_details[PRICE_PER_UNIT_IDX]) + \
+							self.config.currency
 			# Get details about the supplier
 			product_supplier = self.get_supplier(product[SUPPLIER_IDX])
 			# Add as a tuple in the rows list
-			rows[idx] = (product_details[NAME_IDX], product_amount, product_worth, product_supplier)
+			rows[idx] = (product_details[NAME_IDX], product_amount, \
+						str(product_details[PRICE_PER_UNIT_IDX]) + \
+						self.config.currency, product_worth, product_supplier)
 
 		# Print the table
 		show_table(INVENTORY_VIEW_COLUMNS, rows, 'Inventory')
@@ -95,8 +101,17 @@ class InventoryView(ViewBase):
 		Parameters:
 			- pid (int / str): the ProductID of the requested product
 		'''
-		# Get the products from the table as a list
-		search_results = list(self.db.search('Products', 'PID', str(pid), False))
+		try:
+			# Sometimes an unread result will raise an exception
+			self.db.clear_cursor()
+			# Get the products from the table as a list
+			search_results = [x for x in self.db.search('Products', 'PID', str(pid), False)]
+
+		# And sometimes MySQL will raise an InterfaceError, requiring us
+		# to run the search again.
+		except InterfaceError:
+			# Get the products from the table as a list
+			search_results = [x for x in self.db.search('Products', 'PID', str(pid), False)]
 
 		# Make sure we have a product
 		if len(search_results) == 0:

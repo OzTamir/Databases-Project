@@ -17,8 +17,11 @@
 
 class ViewBase(object):
 	''' A base class for views '''
-	def __init__(self, db):
+	def __init__(self, db, config=None):
 		self.db = db
+		# We sometimes need things from the configuration file
+		if config is not None:
+			self.config = config
 
 	def __call__(self):
 		'''

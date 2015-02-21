@@ -65,8 +65,9 @@ You can tweak additonal settings by changing the other parameters in the config.
 Those are the things left to do before I submit the project. The sub-lists are randomly ordered.
 
   - Finish the actual project part:
-    - Viewing suppliers, orders, and purchases (All including search option)
-    - Adding orders and if there is time left suppliers.
+    - Viewing products, purchases, and orders
+    - Creating new orders, categories
+    - Editing inventory
   
   - Minor improvments (By order of importance):
     - Better documentation

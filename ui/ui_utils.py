@@ -123,7 +123,11 @@ def show_table(titles, rows, table_name=None):
 		- header (iterable)	: Sequence with titles for each column
 		- rows (iterable)	: Sequence of rows in the table, 
 							  must contain len(header) items.
-	'''							
+	'''	
+
+	# Print a newline as a seperetor
+	print('')
+
 	# Lambda function to find the biggest string for each column
 	get_biggest = lambda x: max([max([str(row[x]) for row in rows], key=len),\
 							titles[x]], key=len)
@@ -174,6 +178,9 @@ def show_table(titles, rows, table_name=None):
 	# Print seperetor (the size of the biggest string + 3 for ' | ' seperetors)
 	print_seperetor(sum(biggest_strings) + (3 * (len(titles) + 1)))
 
+	# Print a newline as another seperetor
+	print('')
+
 def print_seperetor(size=10):
 	'''
 	Print a seperetor to sepreate different sections of the UI
@@ -184,6 +191,32 @@ def print_seperetor(size=10):
 	if not isinstance(size, int):
 		size = 10
 	print('-' * size)
+
+def input_with_exit(prompt, exit_str, exit_msg, check_isdigit=False):
+	'''
+	Get input from user while checking if he want to quit
+	Parameters:
+		- prompt (str): the msg to present to the user
+		- exit_str (str): the string that trigger exit sequence
+		- exit_msg (str): the msg to present when quitting
+	'''
+	# Get the user's input
+	user_input = raw_input(prompt)
+	# Check if the user want to quit
+	if (user_input.lower() == exit_str.lower() or user_input == '')\
+		or (check_isdigit and not user_input.isdigit()):
+		# Ask the user
+		quit = raw_input('Would you like to cancel and quit? (Y/N)')
+		# If he does want out,
+		if quit.lower() == 'y' or quit.lower() == 'yes':
+			# There can be no exit message
+			if exit_msg != '':
+				print(exit_msg)
+			return None
+		# Else, make a recursive call to get a valid input
+		return input_with_exit(prompt, exit_str, exit_msg)
+	# If everything is good, return the input
+	return user_input
 
 # def search_library(bookname):
 # 	''' Search for books in the library '''

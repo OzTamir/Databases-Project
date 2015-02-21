@@ -16,6 +16,7 @@
 ####################################
 
 from view_base import ViewBase
+from ui.ui_utils import input_with_exit
 
 class NewProduct(ViewBase):
 	''' A view presented when creating a new product entry '''
@@ -50,6 +51,8 @@ class NewProduct(ViewBase):
 		## Code
 		# ----
 
+		print('To cancel, please enter "exit"')
+
 		for idx, val in enumerate(P_COLUMNS):
 			# The Category must exist, so we need to search for it
 			if idx == CATEGORY_IDX:
@@ -61,13 +64,18 @@ class NewProduct(ViewBase):
 				continue
 			
 			else:
-				values[idx] = raw_input('Please Enter The %s: ' % str(val))
+				values[idx] = input_with_exit( \
+								'Please Enter The %s: ' % str(val), \
+								'exit', \
+								'New Product deleted.')
+				if values[idx] is None:
+					return
 
 		# Remove spacing from column names
 		columns = tuple([''.join(x.split(' ')) for x in P_COLUMNS])
 		# Insert the product to the 'Products' Table
 		try:
-			self.db.insert('Products', columns, values, False)
+			self.db.insert('Products', columns, values)
 		except ValueError, e:
 			print('Error: %s' % str(e))
 			return

@@ -16,8 +16,10 @@
 ####################################
 
 from view_base import ViewBase
-from inventory_view import InventoryView
 from ui.ui_utils import *
+
+# We need InventoryView.get_product()
+from inventory_view import InventoryView
 
 class SuppliersView(ViewBase):
 	''' View suppliers '''
@@ -45,7 +47,7 @@ class SuppliersView(ViewBase):
 		PRODUCT_IDX = 1
 
 		# For Products Table
-		PRDUCTS_TABLE = 'Products'
+		PRODUCTS_TABLE = 'Products'
 		PID_IDX = 0
 		PRODUCT_NAME_IDX = 1
 

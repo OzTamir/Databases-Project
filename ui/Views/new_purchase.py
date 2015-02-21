@@ -61,6 +61,12 @@ class NewPurchase(ViewBase):
 		## Code
 		# ----
 
+		# Seperetor
+		print('')
+
+		# Tell the user how to quit
+		print('To finish entring products, enter "exit" or just press enter')
+
 		# Get the products in the purchase
 		while not product is None:
 			# Get the next products
@@ -81,7 +87,7 @@ class NewPurchase(ViewBase):
 
 		# Insert the purchase to the 'Purchases' Table
 		try:
-			self.db.insert('Purchases', P_COLUMNS, values, False)
+			self.db.insert('Purchases', P_COLUMNS, values)
 		except ValueError, e:
 			print('Error: %s' % str(e))
 			return
@@ -101,7 +107,7 @@ class NewPurchase(ViewBase):
 
 			# Insert it to the 'PurchasesItems' table
 			try:
-				self.db.insert('PurchasesItems', PI_COLUMNS, values, False)
+				self.db.insert('PurchasesItems', PI_COLUMNS, values)
 			except ValueError, e:
 				print('Error: %s' % str(e))
 				continue

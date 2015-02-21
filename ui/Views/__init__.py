@@ -21,6 +21,7 @@ This package contains all the classes that defines views
 Files:
 	- inventory_view.py		: Defines a class that allows to view the inventory
 	- suppliers_view.py 	: Defines a class that allows the user to view suppliers
+	- purchase_view.py		: Defines a class that allows the user to view purchases
 	- new_product.py 		: Includes class for new product
 	- new_purchase.py 		: Includes class for new purchase
 	- view_base.py 			: Includes the base class for views
@@ -35,3 +36,4 @@ from new_purchase import NewPurchase
 # Views for viewing data
 from inventory_view import InventoryView
 from suppliers_view import SuppliersView
+from purchase_view import PurchaseView

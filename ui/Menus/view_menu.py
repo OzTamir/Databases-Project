@@ -22,6 +22,7 @@ class ViewMenu(MenuBase):
 	def __init__(self, config, ui_manager):
 		options = [
 			('View Inventory', ui_manager.inventory_view),
+			('View Previous Purchases', ui_manager.purchase_view),
 			('View Suppliers', ui_manager.suppliers_view)
 		]
 		super(ViewMenu, self).__init__(options, config)

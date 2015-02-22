@@ -18,6 +18,8 @@
 import ui.ui_utils
 import core.utils as utils
 
+logger = None
+
 class MenuBase(object):
 	'''
 	A Base class for menus
@@ -30,6 +32,11 @@ class MenuBase(object):
 			- options_list (list of tuples): List from the form [(label, function)]
 			- config (Config): Configuration object
 		'''
+		global logger
+
+		# Set the logger
+		logger = utils.get_logger('ui.menus.menu_base')
+
 		# Save the configuration
 		self.conf = config
 		
@@ -80,7 +87,7 @@ class MenuBase(object):
 		# Make sure that we got a valid input
 		if not (choice.isdigit() and int(choice) - 1 <= len(self.options_labels)):
 			# If not, print an error and try again using recursion
-			print('Please enter a valid choice.')
+			logger.warning('Please enter a valid choice.')
 			return self.get_choice()
 
 		# If it's valid, return the choice as an int
@@ -108,8 +115,9 @@ class MenuBase(object):
 		
 		except Exception, e:
 			# Print an error message
-			utils.error(e, 'Error while running action %s' % \
-						str(self.options_labels[action]), 'Menu.do_action()')
+			logger.error('Error while running action %s' % \
+						str(self.options_labels[action]))
+			logger.debug('Exception: %s' % str(e))
 			# Return an error code
 			return -2
 
@@ -132,7 +140,7 @@ class MenuBase(object):
 
 		# If there was an error, try again
 		if ret_signal == -2:
-			print('Please try again.')
+			logger.warning('Please try again.')
 			return self.run_menu()
 
 		# If we should loop, loop

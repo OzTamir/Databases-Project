@@ -20,8 +20,6 @@ import utils
 import json
 import sys
 
-lol = 'debug'
-
 class Config(object):
 	'''Configuration object to hold data about the current configuration'''
 	def __init__(self, filename='config.json', debug=False):

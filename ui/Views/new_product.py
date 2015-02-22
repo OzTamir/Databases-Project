@@ -17,6 +17,9 @@
 
 from view_base import ViewBase
 from ui.ui_utils import input_with_exit
+import core.utils as utils
+
+logger = None
 
 class NewProduct(ViewBase):
 	''' A view presented when creating a new product entry '''
@@ -25,8 +28,12 @@ class NewProduct(ViewBase):
 		'''
 		Implement the abstrect method show_view
 		'''
-		self.new_product()
+		global logger
 
+		# Set the logger
+		logger = utils.get_logger('ui.views.new_product')
+
+		self.new_product()
 
 	def new_product(self):
 		'''
@@ -76,8 +83,10 @@ class NewProduct(ViewBase):
 		# Insert the product to the 'Products' Table
 		try:
 			self.db.insert('Products', columns, values)
+		
 		except ValueError, e:
-			print('Error: %s' % str(e))
+			logger.error('Error while adding product. Please try again.')
+			logger.debug('Exception: %s' % str(e))
 			return
 
 	def get_category(self):

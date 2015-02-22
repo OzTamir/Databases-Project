@@ -22,6 +22,8 @@ from mysql.connector.errors import *
 import sys
 import utils
 
+logger = None
+
 class Database(object):
 	def __init__(self, config):
 		'''
@@ -29,6 +31,11 @@ class Database(object):
 		Parameters:
 			- config (Config): the configuration object
 		'''
+		global logger
+
+		# Set the logger
+		logger = utils.get_logger('core.database')
+
 		self.conf = config
 		self.host = config.host
 		self.name = config.name
@@ -43,15 +50,16 @@ class Database(object):
 		
 		# Catch any exceptions that are MySQL's "fault"
 		except mysql.connector.Error as err:
-			utils.error(err, 'Error connecting to the host.', \
-						'Database.__init__()', True)
+			logger.debug('MySQL exception: %s' % str(err))
+			logger.error('Error connecting to the host.')
 		
 		# Catch other exceptions
 		except Exception, e:
-			utils.error(e, '', 'Database.__init__()', True)
+			logger.error(str(e))
 		
-		if self.debug:
-			print('Connected to host.')
+		# There were no errors!
+		else:
+			logger.debug('Connected to databse!')
 		
 		# Get the cursor
 		self.cursor = self.conn.cursor()
@@ -64,12 +72,11 @@ class Database(object):
 			- dbpass (str): the database's password
 			- port (int): the MySQL server's port (default - 3306)
 		'''
-		if self.debug:
-			print('Connecting to database...')
+		# Announce what we are doing
+		logger.debug('Connecting to database...')
 		# If there is an active connection ,return it
 		if isinstance(self.conn, mysql.connector.connection.MySQLConnection):
-			if self.debug:
-				print('Already connected!')
+			logger.debug('Already connected!')
 			return self.conn
 		
 		# Create a connection and return in
@@ -98,7 +105,9 @@ class Database(object):
 		
 		# Report any errors
 		except InternalError as e:
-			utils.error(e, e.msg, err_msg)
+			logger.debug('MySQL InternalError: %s' % str(e))
+			logger.info('No results for query: %s' % str(query))
+			logger.info('Passed data: %s' % str(data))
 			return []
 		
 		# Return the results
@@ -125,7 +134,9 @@ class Database(object):
 		
 		# Report any errors
 		except InternalError as e:
-			utils.error(e, e.msg, err_msg)
+			logger.debug('MySQL InternalError: %s' % str(e))
+			logger.info('No results for query: %s' % str(query))
+			logger.info('Passed data: %s' % str(data))
 			raise StopIteration
 		
 		# yield the results
@@ -178,31 +189,27 @@ class Database(object):
 		Close the connection
 		'''
 		self.conn.close()
-		if self.debug:
-			print('Connection closed.')
+		logger.debug('Connection closed.')
 
 	def clear_cursor(self):
 		'''
 		Clear the cursor if we don't need results (used in get_columns)
 		'''
-		if self.debug:
-			print('Clearing cursor...')
+		logger.info('Clearing cursor...')
 		self.cursor.fetchall()
 
 	def commit(self):
 		'''
 		Commit changes to the remote DB
 		'''
-		if self.debug:
-			print('Commiting changes...')
+		logger.info('Commiting changes...')
 		self.conn.commit()
 
 	def rollback(self):
 		'''
 		Rollback changes in case of errors of any kind
 		'''
-		if self.debug:
-			print('Rolling back...')
+		logger.info('Rolling back...')
 		self.conn.rollback()
 
 	def insert(self, table, columns, values, auto_commit=True):
@@ -214,6 +221,7 @@ class Database(object):
 			- values (iterable): the values we want to insert
 			- auto_commit (bool): wheter or not should the function commit		
 		'''
+		raise ValueError('DEBUG')
 		# Get the columns's names
 		columns = str(tuple([str(x) for x in columns]))
 		# Create the query statment
@@ -235,7 +243,9 @@ class Database(object):
 		# Catch any exceptions and initiate a rollback
 		except Exception, e:
 			# Print exception details if in debug mode
-			utils.error(e, '', 'Database.insert')
+			logger.debug('Error running Query: %s' % str(query_stmt))
+			logger.debug('With Values: %s' % str(values))
+			logger.debug('Exception info: %s' % str(e))
 			# Rollback the changes from the current transaction
 			self.rollback()
 			raise ValueError("Can't add entry, please try again \
@@ -347,7 +357,7 @@ class Database(object):
 		# Catch any exceptions and initiate a rollback
 		except Exception, e:
 			# Print exception details if in debug mode
-			utils.error(e, '', 'Database.update')
+			logger.debug('Exception: %s' % str(e))
 			# Rollback the changes from the current transaction
 			self.rollback()
 			raise ValueError("Can't update entry, please try again \

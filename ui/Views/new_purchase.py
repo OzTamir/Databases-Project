@@ -16,6 +16,9 @@
 ####################################
 
 from view_base import ViewBase
+import core.utils as utils
+
+logger = None
 
 class NewPurchase(ViewBase):
 	''' A view presented when creating a new purchase entry '''
@@ -24,6 +27,11 @@ class NewPurchase(ViewBase):
 		'''
 		Implement the abstrect method show_view
 		'''
+		global logger
+
+		# Set the logger
+		logger = utils.get_logger('ui.views.new_purchase')
+
 		self.new_purchase()
 
 	def new_purchase(self):
@@ -87,30 +95,38 @@ class NewPurchase(ViewBase):
 
 		# Insert the purchase to the 'Purchases' Table
 		try:
-			self.db.insert('Purchases', P_COLUMNS, values)
+			self.db.insert('Purchases', P_COLUMNS, values, False)
 		except ValueError, e:
-			print('Error: %s' % str(e))
+			logger.error('Error while adding purchase. Please try again.')
+			logger.debug('Exception: %s' % str(e))
 			return
 
 		# Get the newly created PurchaseID
 		purchase_id = self.db.get_entries('Purchases')[-1][PurchaseID_IDX]
 
-		# Insert the items from the purchase to 'PurchasesItems' table
-		for product, amount in products_in_purchase:
-			# Empty the values list and size it properly
-			values = [0 for x in xrange(3)]
-			
-			# Add the details to the values list
-			values[PurchaseID_IDX] = purchase_id
-			values[1] = product[ProductID_IDX]
-			values[2] = amount
+		try:
+			# Insert the items from the purchase to 'PurchasesItems' table
+			for product, amount in products_in_purchase:
+				# Empty the values list and size it properly
+				values = [0 for x in xrange(3)]
+				
+				# Add the details to the values list
+				values[PurchaseID_IDX] = purchase_id
+				values[1] = product[ProductID_IDX]
+				values[2] = amount
 
-			# Insert it to the 'PurchasesItems' table
-			try:
-				self.db.insert('PurchasesItems', PI_COLUMNS, values)
-			except ValueError, e:
-				print('Error: %s' % str(e))
-				continue
+				# Insert it to the 'PurchasesItems' table
+				self.db.insert('PurchasesItems', PI_COLUMNS, values, False)
+		
+		# If there was any exception, do a rollback
+		except Exception, e:
+			logger.error('Error while adding purchase. Please try again.')
+			logger.debug('Exception: %s' % str(e))
+			self.db.rollback()
+
+		# Only if there were no errors, commit changes
+		else:
+			self.db.commit()
 
 	# This method is used in new_order.py, so I made it static
 	@staticmethod

@@ -14,6 +14,7 @@
 # Description:	Defines various utility functions
 #
 ####################################
+import logging
 import sys
 
 
@@ -74,6 +75,40 @@ def read(prompt, type_expected=None):
 	# Else, ask for input again
 	print('Please enter data of type %s' % str(type_expected))
 	return read(prompt, type_expected)
+
+def get_logger(name, level=None):
+	'''
+	Return a logging.Logger object that can output to stdout
+	Parameters:
+		- name (str): the logger name
+		- level (logging.LEVEL): the level of the logger
+		- format (str): the string for the formatter
+	'''
+	if level is None:
+		if get_debug():
+			level = logging.DEBUG
+		else:
+			level = logging.WARNING
+
+	# Get the logger
+	log = logging.getLogger(name)
+	# Create a handler to output to stdout
+	output_handlr = logging.StreamHandler(sys.stdout)
+	# Set the formatter
+	if level == logging.DEBUG:
+		output_handlr.setFormatter(logging.Formatter(\
+			'(%(asctime)s) %(name)s - %(module)s.%(funcName)s (Line %(lineno)d): %(message)s', '%H:%M:%S'))
+	# If we are not in debug mode, only print the error
+	else:
+		output_handlr.setFormatter(logging.Formatter('%(message)s'))
+	# Set the level for the output handler
+	output_handlr.setLevel(level)
+	# Add the handler
+	log.addHandler(output_handlr)
+	# Set the level for the logger
+	log.setLevel(level)
+	# Return the logger
+	return log
 
 
 

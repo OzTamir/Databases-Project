@@ -23,6 +23,8 @@ from ui.ui_utils import *
 # We need InventoryView.get_product()
 from inventory_view import InventoryView
 
+logger = None
+
 class PurchaseView(ViewBase):
 	''' View purchases '''
 
@@ -30,6 +32,11 @@ class PurchaseView(ViewBase):
 		'''
 		Implement the abstrect method show_view
 		'''
+		global logger
+
+		# Set the logger
+		logger = utils.get_logger('ui.views.purchase_view')
+		
 		self.view_purchases()
 
 	def view_purchases(self):
@@ -86,15 +93,6 @@ class PurchaseView(ViewBase):
 			# If the user wanted out
 			if selected_pid is None:
 				return
-			# #raw_input()
-			
-			# # Check if the user REALLY want to quit
-			# if not selected_pid.isdigit() or selected_pid == 'exit':
-			# 	# Ask him
-			# 	quit = raw_input('Would you like to quit to menu? (Y/N) ')
-			# 	# Only if the answer was positive, quit
-			# 	if quit.lower() == 'y' or quit.lower() == 'yes':
-			# 		return
 
 			# If he gave us a PID, let's make sure it's valid
 			elif selected_pid not in purchases_dict.keys():
@@ -134,12 +132,11 @@ class PurchaseView(ViewBase):
 		PRODUCT_AMOUNT_IDX = 2
 
 		#### --- ####
-
+		
 		# Make sure we got a valid purchase
 		if purchase is None:
-			utils.error(ValueError('Purchase is None'), \
-					'Error viewing Purchase. Please try again.', \
-					'PurchaseView.get_purchase()')
+			logger.debug('Purchase is None')
+			logger.warning('Error viewing Purchase. Please try again.')
 			return
 
 		# Create a list to store the purchase details

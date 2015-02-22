@@ -25,6 +25,8 @@ from datetime import date
 # We need NewPurchase.get_product_in_purchase()
 from new_purchase import NewPurchase
 
+logger = None
+
 class NewOrder(ViewBase):
 	''' A view presented when creating a new order entry '''
 
@@ -32,6 +34,11 @@ class NewOrder(ViewBase):
 		'''
 		Implement the abstrect method show_view
 		'''
+		global logger
+
+		# Set the logger
+		logger = utils.get_logger('ui.views.new_order')
+		
 		self.new_order()
 
 
@@ -106,9 +113,10 @@ class NewOrder(ViewBase):
 		# Insert the order details to the 'Orders' Table
 		try:
 			self.db.insert('Orders', O_COLUMNS, values)
+		
 		except ValueError, e:
-			utils.error(e, 'Error while creating a new order', \
-						'NewOrder.new_order')
+			logger.error('Error while creating a new order. Please try again.')
+			logger.debug('Exception: %s' % str(e))
 
 
 

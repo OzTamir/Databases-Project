@@ -54,7 +54,7 @@ class UIManager(object):
 		self.new_order = NewOrder(db, config)
 		
 		# Set the views (viewing)
-		self.inventory_view = InventoryView(db, config)
+		self.inventory_view = InventoryView(db, config, True)
 		self.suppliers_view = SuppliersView(db)
 		self.purchase_view = PurchaseView(db, config)
 		self.orders_view = OrdersView(db, config)

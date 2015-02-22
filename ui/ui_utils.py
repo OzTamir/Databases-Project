@@ -124,7 +124,7 @@ def show_table(titles, rows, table_name=None):
 		- rows (iterable)	: Sequence of rows in the table, 
 							  must contain len(header) items.
 	'''
-
+	
 	# If we have no data, create a NULL line
 	if len(rows) == 0:
 		rows.append(['NULL' for i in titles])

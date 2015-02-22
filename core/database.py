@@ -304,6 +304,55 @@ class Database(object):
 		# Return the first value
 		return search_results[0]
 
+	def update(self, table, match, update_dict, auto_commit=True):
+		'''
+		Update existing values in a table
+		Parameters:
+			- table (str): the table in which we would like to update values
+			- match (tuple): a tuple of kind (column, value) to match against
+			- update_dict (dictionary): dictionary of kind (column : new value)
+			- auto_commit (bool): should the function commit changes
+		'''
+		# Initial UPDATE query
+		update_stmt = 'UPDATE %s SET' % str(table)
+
+		# Create a list for keys and a list of items (dict is unordered)
+		keys = []
+		values = []
+		for key, value in update_dict.items():
+			keys.append(str(key))
+			values.append(value)
+
+		# Create the keys string
+		keys_str = ', '.join(['%s=%%s' % key for key in keys])
+
+		# Create the where clause
+		where_stmt = 'WHERE %s=%s' % (str(match[0]), str(match[1]))
+
+		# Create the query statment
+		query_stmt = ' '.join([
+			update_stmt,
+			keys_str,
+			where_stmt
+			])
+
+		# Try to execute the query
+		try:
+			self.cursor.execute(query_stmt, values)
+			# If the function should commit changes
+			if auto_commit:
+				# Commit the changes to the remote DB
+				self.commit()
+		
+		# Catch any exceptions and initiate a rollback
+		except Exception, e:
+			# Print exception details if in debug mode
+			utils.error(e, '', 'Database.update')
+			# Rollback the changes from the current transaction
+			self.rollback()
+			raise ValueError("Can't update entry, please try again \
+							(maybe with different values?)")
+
 	def __del__(self):
 		'''
 		Called upon object deletion, make sure the connection

@@ -221,7 +221,6 @@ class Database(object):
 			- values (iterable): the values we want to insert
 			- auto_commit (bool): wheter or not should the function commit		
 		'''
-		raise ValueError('DEBUG')
 		# Get the columns's names
 		columns = str(tuple([str(x) for x in columns]))
 		# Create the query statment

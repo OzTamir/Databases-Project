@@ -68,8 +68,7 @@ You can tweak additonal settings by changing the other parameters in the config.
 Those are the things left to do before I submit the project. The sub-lists are by order of importance.
 
   - Finish the actual project part:
-    - Editing/Deleting inventory, products, categories, suppliers, orders
-    - Viewing products, categories
+    - Editing/Deleting products, categories, suppliers, orders
     - Creating categories
   
   - Minor improvments :

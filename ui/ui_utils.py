@@ -145,6 +145,8 @@ def show_table(titles, rows, table_name=None):
 
 	# If we have a table name, print it
 	if table_name is not None:
+		# Add the number of items to the title
+		table_name = '%s (%d)' % (str(table_name), len(rows))
 		# Width of table - place for '|' at start at end of line
 		size = (sum(biggest_strings) + (3 * (len(titles) + 1))) - 4
 		print(' |%s|' % str(table_name).center(size, ' '))

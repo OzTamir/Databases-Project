@@ -30,6 +30,7 @@ from Views import OrdersView
 from Views import InventoryView
 from Views import SuppliersView
 from Views import PurchaseView
+from Views import CategoriesView
 
 # Import Menus
 from Menus import MainMenu
@@ -61,7 +62,7 @@ class UIManager(object):
 		self.purchase_view = PurchaseView(db, config)
 		self.orders_view = OrdersView(db, config)
 		self.products_view = ProductsView(db, config)
-
+		self.categories_view = CategoriesView(db)
 
 		# Set the menus
 		self.add_menu = AddMenu(config, self)

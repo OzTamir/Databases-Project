@@ -56,6 +56,9 @@ class MenuBase(object):
 		'''
 		Print the options of the menu
 		'''
+		# Print a newline
+		print('')
+		
 		# Instruct the user
 		print('Choose an action:')
 		

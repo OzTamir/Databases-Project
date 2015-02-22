@@ -22,6 +22,7 @@ Files:
 	- inventory_view.py		: Defines a class that allows to view the inventory
 	- suppliers_view.py 	: Defines a class that allows the user to view suppliers
 	- orders_view.py 		: Defines a class that allows the user to view orders
+	- products_view.py 		: Defines a class that allows the user to view products
 	- purchase_view.py		: Defines a class that allows the user to view purchases
 	- new_product.py 		: Includes class for new product
 	- new_purchase.py 		: Includes class for new purchase
@@ -41,3 +42,4 @@ from inventory_view import InventoryView
 from suppliers_view import SuppliersView
 from purchase_view import PurchaseView
 from orders_view import OrdersView
+from products_view import ProductsView

@@ -35,6 +35,10 @@ class ViewBase(object):
 		'''
 		Make View objects callable
 		'''
+		# Print a newline
+		print('')
+
+		# Show the view
 		self.show_view()
 
 		# If we allow editing, run the function

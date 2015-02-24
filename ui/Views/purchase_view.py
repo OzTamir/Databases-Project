@@ -144,7 +144,8 @@ class PurchaseView(ViewBase):
 
 		# Get all the products in this purchase
 		pid = purchase[PID_IDX]
-		items = self.db.search('PurchasesItems', 'PurchaseID', pid, False)
+		items = list(self.db.search('PurchasesItems', 'PurchaseID', pid, False))
+
 		# Iterate over the items
 		for idx, item in enumerate(items):
 			# Get the product's details

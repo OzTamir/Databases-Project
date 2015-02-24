@@ -21,6 +21,7 @@ class MainMenu(MenuBase):
 	def __init__(self, config, ui_manager):
 		options = [
 			('Add new items', ui_manager.add_menu),
-			('View existing items', ui_manager.view_menu)
+			('View existing items', ui_manager.view_menu),
+			('Manage Purchases', ui_manager.purchase_menu)
 		]
 		super(MainMenu, self).__init__(options, config, True)

@@ -36,6 +36,7 @@ from Views import CategoriesView
 from Menus import MainMenu
 from Menus import AddMenu
 from Menus import ViewMenu
+from Menus import PurchaseMenu
 
 # Import sys for sys.exit (avoided 'from sys import exit' to maintain standart)
 import sys
@@ -74,6 +75,7 @@ class UIManager(object):
 		# Set the menus
 		self.add_menu = AddMenu(config, self)
 		self.view_menu = ViewMenu(config, self)
+		self.purchase_menu = PurchaseMenu(config, self)
 		self.main_menu = MainMenu(config, self)
 
 		# Keep a log of menus hierarchy

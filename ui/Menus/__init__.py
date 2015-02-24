@@ -29,3 +29,4 @@ from menu_base import MenuBase
 from main_menu import MainMenu
 from add_menu import AddMenu
 from view_menu import ViewMenu
+from purchase_menu import PurchaseMenu

@@ -26,6 +26,7 @@ class ViewBase(object):
 			- edit (bool): Should we allow editing the data after viewing it
 		'''
 		self.db = db
+
 		self.edit = edit
 		# We sometimes need things from the configuration file
 		if config is not None:

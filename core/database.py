@@ -362,6 +362,36 @@ class Database(object):
 			raise ValueError("Can't update entry, please try again \
 							(maybe with different values?)")
 
+	def search_range(self, table, column, start, end, include_edges=True):
+		'''
+		Return all the results in a certing range
+		Parameters:
+			- table (str): the table to search in
+			- column (str): the column to match against
+			- start (type(column)): the minimal value
+			- end (type(column)): the maximal value
+			- include_edges (bool): whether to return the edges (>= or >)
+		'''
+		# Check if we want edges
+		if include_edges:
+			op_suffix = '='
+		else:
+			op_suffix = ''
+
+		# Craft the select statment
+		select_stmt = 'SELECT * FROM %s WHERE' % str(table)
+
+		# Craft the between statment
+		range_stmt = '%s >%s \'%s\' and %s <%s \'%s\'' % (
+					str(column), op_suffix, str(start), str(column), \
+					op_suffix, str(end))
+
+		# Build to query from it's parts
+		query = ' '.join([select_stmt, range_stmt])
+		logger.debug(query)
+		return self.__get_results(query, 'search_range')
+
+
 	def __del__(self):
 		'''
 		Called upon object deletion, make sure the connection

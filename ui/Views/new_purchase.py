@@ -18,6 +18,8 @@
 from view_base import ViewBase
 import core.utils as utils
 
+from datetime import date
+
 logger = None
 
 class NewPurchase(ViewBase):
@@ -90,12 +92,17 @@ class NewPurchase(ViewBase):
 			amount += cnt
 			total += (cnt * product[PRICE_IDX])
 
+		# Add 'PurchaseDate' to the columns list
+		columns = [x for x in P_COLUMNS]
+		columns.append('PurchaseDate')
+		columns = tuple(columns)
+
 		# Create the values list expected by self.db.insert
-		values = [amount, total]
+		values = [amount, total, date.today()]
 
 		# Insert the purchase to the 'Purchases' Table
 		try:
-			self.db.insert('Purchases', P_COLUMNS, values, False)
+			self.db.insert('Purchases', columns, values, False)
 		except ValueError, e:
 			logger.error('Error while adding purchase. Please try again.')
 			logger.debug('Exception: %s' % str(e))

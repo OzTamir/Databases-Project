@@ -37,16 +37,81 @@ class PurchaseView(ViewBase):
 		# Set the logger
 		logger = utils.get_logger('ui.views.purchase_view')
 		
-		self.view_purchases()
+		self.view_all()
 
-	def view_purchases(self):
+	def view_all(self):
+		'''
+		View all the records in Purchases table
+		'''
+		PRODUCT_VIEW_COLUMNS = ('Purchase ID', '# Items', 'Total', 'Date')
+		PURCHASES_TABLE = 'Purchases'
+		
+		# Get Purchases details
+		entries = [[str(item) for item in purchase] \
+					for purchase in self.db.get_entries(PURCHASES_TABLE)]
+
+		self.view_purchases(entries)
+
+	def by_year(self):
+		'''
+		View Purchases from a certin year
+		'''
+		PURCHASES_TABLE = 'Purchases'
+
+		# Get input from the user
+		year = ''
+		while not year.isdigit() or not len(year) == 4:
+			year = raw_input('Please enter a year (Must be a number of length 4): ')
+
+		# Create the start and end dates
+		start = '%s-01-01' % str(year)
+		end = '%s-12-31' % str(year)
+
+		# Get the entries
+		entries = self.db.search_range(PURCHASES_TABLE, 'PurchaseDate', start,\
+										end)
+
+		self.view_purchases(entries)
+
+	def by_month(self):
+		'''
+		View Purchases from a certin month
+		'''
+		PURCHASES_TABLE = 'Purchases'
+
+		# Get input from the user
+		year = ''
+		while not year.isdigit() or not len(year) == 4:
+			year = raw_input('Please enter a year (Must be a number of length 4): ')
+
+		# Get input from the user
+		month = ''
+		while not month.isdigit() or not len(month) <= 2:
+			month = raw_input('Please enter a month: ')
+
+		# Format the month
+		if len(month) == 1:
+			month = '0%s' % str(month)
+
+		# Create the start and end dates
+		start = '%s-%s-01' % (str(year), str(month))
+		end = '%s-%s-31' % (str(year), str(month))
+
+		# Get the entries
+		entries = self.db.search_range(PURCHASES_TABLE, 'PurchaseDate', start,\
+										end)
+
+		self.view_purchases(entries)
+
+
+	def view_purchases(self, entries):
 		'''
 		View the purchases table
 		'''
 
 		#### Constants ####
 		
-		PRODUCT_VIEW_COLUMNS = ('Purchase ID', '# Items', 'Total')
+		PRODUCT_VIEW_COLUMNS = ('Purchase ID', '# Items', 'Total', 'Date')
 
 		# For Purchases Table
 		PURCHASES_TABLE = 'Purchases'
@@ -63,15 +128,17 @@ class PurchaseView(ViewBase):
 		 	- than ask for another purchaseID
 		 '''
 
-		# Get Purchases details
-		entries = [[str(item) for item in purchase] \
-					for purchase in self.db.get_entries(PURCHASES_TABLE)]
+		# # Get Purchases details
+		# entries = [[str(item) for item in purchase] \
+		# 			for purchase in self.db.get_entries(PURCHASES_TABLE)]
 
 		# Create a dictionary of PID:Purchases pairs
 		purchases_dict = dict()
-		
+
 		# Add currency symbol and the purchase to the dict
 		for purchase in entries:
+			# Make the tuple a list
+			purchase = list(purchase)
 			# Add the currency to the price units
 			purchase[TOTAL_IDX] = str(purchase[TOTAL_IDX]) + \
 									self.config.currency

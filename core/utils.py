@@ -59,22 +59,39 @@ def error(exception, msg, location, fatal=False, error_code=1):
 	if fatal:
 		sys.exit(error_code)
 
-
-def read(prompt, type_expected=None):
+def get_dict(default_dict, label):
 	'''
-	Read information from the user, and check for type
+	Populate default_dict with values from the user
 	Parameters:
-		- prompt (str): The message asking the user for input
-		- type_expected (type): the type of which the input should be
+		- default_dict (dict): a dictionary with the requested keys and 
+								a default value (or None if there isn't one)
+		- label (str): the thing whose details we ask the user for
 	'''
-	data = input(prompt)
-	# If the caller don't care about the type or the type is correct, return
-	if type_expected is None or isinstance(data, type_expected):
-		return data
+	# Ask the user for details
+	for key, item in default_dict.items():
+		# If we don't have a default values
+		if item is None:
+			value = ''
+			# This is a while loop to ensure we get a value
+			while value == '':
+				value = raw_input('Please enter the %s\'s %s (Required):' \
+									% (str(label), str(key.title())))
+		# If we have a default value
+		else:
+			value = raw_input('Please enter the %s\'s %s (Default: %s):' \
+								% (str(label), str(key), str(item)))
+			# If there was no value given, set it to the default
+			if value == '':
+				value = item
 
-	# Else, ask for input again
-	print('Please enter data of type %s' % str(type_expected))
-	return read(prompt, type_expected)
+		# If the item is a number, cast it to int
+		if isinstance(value, str) and value.isdigit():
+			value = int(value)
+
+		# Finally, set the item in the dictionary to the input value
+		default_dict[key] = value
+
+	return default_dict
 
 def get_logger(name, level=None):
 	'''

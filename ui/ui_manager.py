@@ -85,7 +85,7 @@ class UIManager(object):
 		self.recursion_counter = 0
 
 		# Print the title message
-		print(config.title_msg)
+		print(config.title)
 		ui_utils.print_seperetor()
 
 	def __call__(self):

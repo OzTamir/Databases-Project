@@ -42,7 +42,7 @@ class System(object):
 		try:
 			# Create a Config object
 			self.conf = Config(config_file, True)
-
+			
 			# Set a global config global variable at utils
 			self.set_global(None, self.conf)
 

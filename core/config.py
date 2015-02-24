@@ -18,6 +18,7 @@
 from __future__ import print_function
 import utils
 import json
+import os
 import sys
 
 class Config(object):
@@ -27,7 +28,12 @@ class Config(object):
 		Initialize the configuration object.
 		'''
 		self.config_file = filename
-		self.config_dict = self.get_config(debug)
+		# Check if we have a configuration file
+		if os.path.isfile(filename):
+			self.config_dict = self.get_config(debug)
+		# else, create one
+		else:
+			self.config_dict = self.setup()
 
 	def get_config(self, debug):
 		'''
@@ -51,6 +57,104 @@ class Config(object):
 		except Exception, e:
 			# Inform the user about the error and quit
 			utils.error(e, 'Error while reading configuration file.', 'get_config', True)
+
+	def setup(self):
+		'''
+		Create a configuration file
+		'''
+		# Tell the user what is happening
+		print('Welcome to your new system!')
+		print('Since we couldn\'t find a configuration file, let\'s create one!')
+
+		# Get the DB's details
+		db = self.get_db_details()
+
+		# Get the other configuration details
+		config = self.get_config_details(db)
+
+		# Save to file
+		self.save_config(config)
+
+		# return the configuration dict
+		return config
+
+	def get_db_details(self):
+		'''
+		Get the DB's details from the user
+		'''
+		# Default values
+		db = {
+			'host' : None,
+			'username' : None,
+			'password' : None,
+			'name' : None,
+			'port' : 3306
+		}
+
+		# Get the details from the user
+		db = utils.get_dict(db, 'Database')
+		# return the dictionary
+		return db
+
+
+	def get_config_details(self, db):
+		'''
+		Get the configuration details from the user
+		Parameters:
+			- db (dictionary): the dict created in self.get_db_details()
+		'''
+
+		# Default values
+		config = {
+			'title' : None,
+			'currency' : '$'
+		}
+
+		# Get the details from the user
+		config = utils.get_dict(config, 'System')
+
+		# Ask the user if he want to set debug mode
+		debug = raw_input('Would you like to set debug mode on? (Y/N):')
+
+		# Check the input
+		if debug.lower() == 'y':
+			print('Debug mode is now on.')
+			debug = True
+
+		else:
+			debug = False
+
+		# Set the debug mode
+		config['debug'] = debug
+
+		# Set the Database variable
+		config['db'] = db
+
+		return config
+
+
+	def save_config(self, config):
+		'''
+		Save the configuration to a file
+		Parameters:
+			- config (dict): the dictionary created in self.get_config_details()
+		'''
+		# Create the json object
+		config_json = json.dumps(config)
+
+		# Save to file
+		try:
+			with open(self.config_file, 'w') as file:
+				file.write(config_json)
+		
+		# Inform users about exceptions
+		except Exception, e:
+			# We don't use a logger because this module dosen't have one :(
+			print('Error while saving configuration file. Please try again.')
+			if config['debug']:
+				print('Exception: %s' % str(e))
+			# This is a fatal error. Quit.
+			sys.exit(1)
 
 	def __getattr__(self, name):
 		'''

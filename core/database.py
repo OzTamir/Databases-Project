@@ -93,7 +93,9 @@ class Database(object):
 			- err_msg (str): What should the error message read
 			- data (iterable): any data that should be passed to the query
 		'''
-		
+		# Print the query as a debug message
+		logger.debug(query)
+
 		# Try to run the query
 		try:
 			# If there is data, run the query and pass the data
@@ -122,7 +124,9 @@ class Database(object):
 			- err_msg (str): What should the error message read
 			- data (iterable): any data that should be passed to the query
 		'''
-		
+		# Print the query as a debug message
+		logger.debug(query)
+
 		# Try to run the query
 		try:
 			# If there is data, run the query and pass the data
@@ -388,8 +392,82 @@ class Database(object):
 
 		# Build to query from it's parts
 		query = ' '.join([select_stmt, range_stmt])
-		logger.debug(query)
 		return self.__get_results(query, 'search_range')
+
+
+	def sum_column(self, table, column, match=None, res_range=None):
+		'''
+		Get the sum of all the values in a column
+		Parameters:
+			- table (str): the table to search in
+			- column (str): the column whose values we want to sum
+			- match (tuple): a tuple of (column, value) to filter by
+			- res_range (tuple): a tuple of (column, start, end) to 
+								threshold results (column is the column to 
+								thresh by, for example date column)
+		'''
+
+		# Craft the select statment
+		select_stmt = 'SELECT sum(%s) FROM %s' % (str(column), str(table))
+
+		# Store the query's other parts in a list
+		query = []
+
+		# If we want to filter results
+		if match is not None:
+			query.append('%s=%s' % (str(match[0]), str(match[1])))
+
+		# If we have a range
+		if res_range is not None:
+			# Get the range details
+			col, start, end = res_range
+			# Craft the between statment
+			range_stmt = '%s >= \'%s\' and %s <= \'%s\'' % \
+							(str(col), str(start), str(col), str(end))
+			query.append(range_stmt)
+
+		# Check to see if we have a where clause
+		if len(query) > 0:
+			query = ' '.join([select_stmt, 'WHERE', \
+						' and '.join(query)])
+		else:
+			query = select_stmt
+
+		return self.__get_results(query, 'sum_column')[0][0]
+
+	def sorted_results(self, table, sort_by_column, match=None, desc=False):
+		'''
+		Get sorted results from the DB
+		Parameters:
+			- table (str): the table to search in
+			- sort_by_column (str): the column to sort results by
+			- match (tuple): if we want to filter, we pass (column, value)
+			- desc (bool): if True, values will be sorted in a descending order
+		'''
+		# Store the different parts of the query here
+		query = []
+
+		# Craft the select statment
+		select_stmt = 'SELECT * FROM %s' % str(table)
+		query.append(select_stmt)
+
+		# Craft the where clause
+		if match is not None:
+			where_stmt = 'WHERE %s=%s' % (str(match[0]), str(match[1]))
+			query.append(where_stmt)
+
+		# Craft the order by clause
+		order_by_stmt = 'ORDER BY %s' % str(sort_by_column)
+		query.append(order_by_stmt)
+
+		# Set the sort order
+		choose_func = lambda desc: ('DESC' * int(desc)) + ('ASC' * int(not desc))
+		sort_order = choose_func(desc)
+		query.append(sort_order)
+
+		# Get the query string and return the results
+		query_str = ' '.join(query)
+		return self.__get_results(query_str, 'sorted_results')
 
 
 	def __del__(self):

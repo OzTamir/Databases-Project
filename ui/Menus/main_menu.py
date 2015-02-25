@@ -23,6 +23,7 @@ class MainMenu(MenuBase):
 			('Add new items', ui_manager.add_menu),
 			('View existing items', ui_manager.view_menu),
 			('Manage Purchases', ui_manager.purchase_menu),
-			('Manage Orders', ui_manager.orders_menu)
+			('Manage Orders', ui_manager.orders_menu),
+			('View Statistics Report', ui_manager.stats_view)
 		]
 		super(MainMenu, self).__init__(options, config, True)

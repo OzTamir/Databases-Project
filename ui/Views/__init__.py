@@ -46,5 +46,6 @@ from purchase_view import PurchaseView
 from orders_view import OrdersView
 from products_view import ProductsView
 from categories_view import CategoriesView
+from stats_view import StatsView
 
 

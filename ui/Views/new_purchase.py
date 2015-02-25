@@ -180,7 +180,7 @@ class NewPurchase(ViewBase):
 
 	# This method is used in new_order.py, so I made it static
 	@staticmethod
-	def get_product_in_purchase(self):
+	def get_product_in_purchase(self, *args):
 		'''
 		Get the details of one product included in the purchase.
 		'''

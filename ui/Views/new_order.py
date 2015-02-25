@@ -73,7 +73,7 @@ class NewOrder(ViewBase):
 
 		# Get the product the user wants to order
 		print('To create an order, please pick a product to order.')
-		product = self.get_product_in_purchase(obj)
+		product = self.get_product_in_purchase()
 
 		# Make sure we are done
 		if product is None:
@@ -119,12 +119,12 @@ class NewOrder(ViewBase):
 			logger.debug('Exception: %s' % str(e))
 
 
-	def get_product_in_purchase(self, obj):
+	def get_product_in_purchase(self, *args):
 		'''
 		Since we call a static method which has a recursive element,
 		we implement this function to avoid exceptions.
 		'''
-		return NewPurchase.get_product_in_purchase(obj)
+		return NewPurchase.get_product_in_purchase(self)
 
 
 	def get_supplier_for_product(self, product):

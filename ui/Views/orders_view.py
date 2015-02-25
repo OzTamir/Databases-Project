@@ -28,9 +28,72 @@ class OrdersView(ViewBase):
 		'''
 		Implement the abstrect method show_view
 		'''
-		self.view_orders()
+		self.view_all()
 
-	def view_orders(self):
+	def view_all(self):
+		'''
+		View all the records in Orders table
+		'''
+
+		ORDERS_TABLE = 'Orders'
+		
+		# Get Orders details
+		entries = self.db.get_entries(ORDERS_TABLE)
+
+		self.view_orders(entries)
+
+	def by_year(self):
+		'''
+		View Orders from a certin year
+		'''
+		ORDERS_TABLE = 'Orders'
+
+		# Get input from the user
+		year = ''
+		while not year.isdigit() or not len(year) == 4:
+			year = raw_input('Please enter a year (Must be a number of length 4): ')
+
+		# Create the start and end dates
+		start = '%s-01-01' % str(year)
+		end = '%s-12-31' % str(year)
+
+		# Get the entries
+		entries = self.db.search_range(ORDERS_TABLE, 'OrderDate', start,\
+										end)
+
+		self.view_orders(entries)
+
+	def by_month(self):
+		'''
+		View Purchases from a certin month
+		'''
+		ORDERS_TABLE = 'Orders'
+
+		# Get input from the user
+		year = ''
+		while not year.isdigit() or not len(year) == 4:
+			year = raw_input('Please enter a year (Must be a number of length 4): ')
+
+		# Get input from the user
+		month = ''
+		while not month.isdigit() or not len(month) <= 2:
+			month = raw_input('Please enter a month: ')
+
+		# Format the month
+		if len(month) == 1:
+			month = '0%s' % str(month)
+
+		# Create the start and end dates
+		start = '%s-%s-01' % (str(year), str(month))
+		end = '%s-%s-31' % (str(year), str(month))
+
+		# Get the entries
+		entries = self.db.search_range(ORDERS_TABLE, 'OrderDate', start,\
+										end)
+
+		self.view_orders(entries)
+
+	def view_orders(self, entries):
 		'''
 		View the orders table
 		'''
@@ -60,9 +123,6 @@ class OrdersView(ViewBase):
 		PRODUCT_NAME_IDX = 1
 
 		#### --- ####
-
-		# Get the orders in the table
-		entries = self.db.get_entries(ORDERS_TABLE)
 
 		# Create a list to hold the data
 		orders = []

@@ -24,6 +24,7 @@ import core.utils as utils
 from Views import NewPurchase
 from Views import NewProduct
 from Views import NewOrder
+from Views import NewCategory
 
 from Views import ProductsView
 from Views import OrdersView
@@ -65,6 +66,7 @@ class UIManager(object):
 		self.new_purchase = NewPurchase(db)
 		self.new_product = NewProduct(db)
 		self.new_order = NewOrder(db, config)
+		self.new_category = NewCategory(db)
 		
 		# Set the views (viewing)
 		self.inventory_view = InventoryView(db, config, True)

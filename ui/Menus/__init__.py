@@ -19,10 +19,13 @@
 This package contains all the classes that defines Menus
 
 Files:
-	- main_menu.py 			: Includes class for the main menu
 	- menu_base.py 			: Includes the base class for menus
+	- main_menu.py 			: Includes class for the main menu
+
 	- add_menu.py			: Defines a menu that add items
 	- view_menu.py			: Defines a menu that shows items
+	- purchase_menu.py		: Defines a menu that shows purchases options
+	- orders_menu.py		: Defines a menu that shows orders options
 '''
 
 from menu_base import MenuBase

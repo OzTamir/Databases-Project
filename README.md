@@ -60,6 +60,7 @@ You can tweak additonal settings by changing the other parameters in the config.
       - new_product.py 		: Includes class for new product
       - new_purchase.py 	: Includes class for new purchase
       - new_order.py		: Defines a class for new orders
+      - new_category.py   : Defines a view for creating new categories
     
     - ui_utils.py		: Includes utility functions for UI
     - ui_manager.py		: Define the UIManager, responsible for handling UI
@@ -77,9 +78,7 @@ You can tweak additonal settings by changing the other parameters in the config.
 Those are the things left to do before I submit the project. The sub-lists are by order of importance.
 
   - Finish the actual project part: 
-    - Add a setup.py file that will setup the database (See number 2 in 'Minor Improvments')
     - Editing/Deleting products, categories, suppliers, orders
-    - Creating/Viewing categories
   
   - Minor improvments :
     - Add a settings view, allowing to change the configuration

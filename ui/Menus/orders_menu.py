@@ -11,7 +11,7 @@
 ####
 #
 # Filename:		orders_menu.py
-# Description:	This file defines a menu that shows orders
+# Description:	This file defines a menu that shows orders options
 #
 ####################################
 

@@ -41,6 +41,7 @@ class Database(object):
 		self.name = config.name
 		self.debug = config.debug
 		self.conn = None
+		self.db_created = False
 		
 		# Try to connect to the database, and if there were any
 		# errors report then and quit.
@@ -80,9 +81,64 @@ class Database(object):
 			return self.conn
 		
 		# Create a connection and return in
-		return mysql.connector.connect(user = username, password = dbpass, \
-										host = self.host, \
-										database = self.name, port=port)
+		cnx = mysql.connector.connect(user = username, password = dbpass, \
+										host = self.host, port=port)
+
+		try:
+			# Set the connection's database
+			cnx.database = '`%s`' % str(self.conf.name)
+			self.db_created = False
+			return cnx
+
+		except mysql.connector.Error as err:
+			# If the problem is that the database doesn't exsist, create it
+			if err.errno == errorcode.ER_BAD_DB_ERROR:
+				self.create_database(cnx.cursor(), self.conf.name)
+				cnx.database = self.conf.name
+				self.db_created = True
+				return mysql.connector.connect(user = username, password = dbpass, \
+												host = self.host, \
+												database = self.name, port=port)
+			# Else, pass it to the caller
+			else:
+				raise err
+	
+	def create_database(self, cursor, db_name, charset='latin1'):
+		'''
+		Create a new database on the server
+		Parameters:
+			- cursor (mysql.connector.cursor): the cursor object
+			- db_name (str): the name of the new database
+			- charset (str): the default charset of the new database
+		'''
+		query = 'CREATE DATABASE IF NOT EXISTS `%s`'\
+				 % str(db_name)#, str(charset))
+		logger.debug(query)
+		# Try to create the database
+		try:
+			cursor.execute(query)
+		except mysql.connector.Error as err:
+			# Log the error and pass the exception to caller
+			logger.error('Error while creating database.')
+			raise err
+
+	def execute(self, query, multi_stmts=False, data=None):
+		'''
+		Excecute SQL query
+		Parameters:
+			- query (str): the query to execute
+			- data (iterable): values to pass to the query
+			- multi_stmts (bool): are we running multiple statments
+		'''
+		# Log the query
+		logger.debug('Query: %s', str(query))
+		logger.debug('Values: %s', str(data))
+
+		# Excecute the query
+		if data is not None:
+			self.cursor.execute(query, data, multi=multi_stmts)
+		else:
+			self.cursor.execute(query, multi=multi_stmts)
 
 	def __get_results(self, query, err_msg='Database.__get_results', \
 															data=None):
@@ -93,8 +149,9 @@ class Database(object):
 			- err_msg (str): What should the error message read
 			- data (iterable): any data that should be passed to the query
 		'''
-		# Print the query as a debug message
-		logger.debug(query)
+		# Log the query
+		logger.debug('Query: %s', str(query))
+		logger.debug('Values: %s', str(data))
 
 		# Try to run the query
 		try:
@@ -124,8 +181,9 @@ class Database(object):
 			- err_msg (str): What should the error message read
 			- data (iterable): any data that should be passed to the query
 		'''
-		# Print the query as a debug message
-		logger.debug(query)
+		# Log the query
+		logger.debug('Query: %s', str(query))
+		logger.debug('Values: %s', str(data))
 
 		# Try to run the query
 		try:
@@ -226,7 +284,10 @@ class Database(object):
 			- auto_commit (bool): wheter or not should the function commit		
 		'''
 		# Get the columns's names
-		columns = str(tuple([str(x) for x in columns]))
+		if len(columns) == 1:
+			columns = str('(%s)' % str(columns[0]))
+		else:
+			columns = str(tuple([str(x) for x in columns]))
 		# Create the query statment
 		query = 'INSERT INTO %s %s' % (table, columns.replace("'", ''))
 		values_query = 'VALUES (' + ('%s, ' * len(values))[:-2] + ')'

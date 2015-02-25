@@ -11,7 +11,7 @@
 ####
 #
 # Filename:		purchase_menu.py
-# Description:	This file defines a menu that shows purchases
+# Description:	This file defines a menu that shows purchases options
 #
 ####################################
 

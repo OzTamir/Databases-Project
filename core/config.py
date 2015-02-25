@@ -28,12 +28,14 @@ class Config(object):
 		Initialize the configuration object.
 		'''
 		self.config_file = filename
+		self.new_config = False
 		# Check if we have a configuration file
 		if os.path.isfile(filename):
 			self.config_dict = self.get_config(debug)
 		# else, create one
 		else:
 			self.config_dict = self.setup()
+			self.new_config = True
 
 	def get_config(self, debug):
 		'''
@@ -84,7 +86,7 @@ class Config(object):
 		'''
 		# Default values
 		db = {
-			'host' : None,
+			'host' : 'localhost',
 			'username' : None,
 			'password' : None,
 			'name' : None,
@@ -176,6 +178,10 @@ class Config(object):
 		for value in self.config_dict.values():
 			if isinstance(value, dict) and name in value.keys():
 				return value[name]
+
+		# else, check if it's an actual attribute
+		if name in self.__dict__.keys():
+			return self.__dict__[name]
 
 		# Finally, if there is no such key, raise a KeyError
 		raise KeyError('No attribute named %s' % str(name))

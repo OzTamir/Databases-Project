@@ -21,6 +21,7 @@ import sys
 
 from config import Config
 from database import Database
+from setup import Setup
 from ui import UIManager
 
 # Import the modules in which there are global variables
@@ -59,6 +60,10 @@ class System(object):
 			
 			# Set a global db global variable at ui_utils
 			self.set_global(self.db, None)
+
+			# If the config or the db were just created, setup the database
+			if self.conf.new_config or self.db.db_created:
+				setup = Setup(self.db, self.conf)
 			
 			# Create a UIManager object
 			self.ui_manager = UIManager(self.db, self.conf)

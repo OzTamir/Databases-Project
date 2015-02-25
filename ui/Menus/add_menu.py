@@ -22,6 +22,7 @@ class AddMenu(MenuBase):
 		options = [
 			('Add a new product', ui_manager.new_product),
 			('Create a new purchase', ui_manager.new_purchase),
-			('Create a new order', ui_manager.new_order)
+			('Create a new order', ui_manager.new_order),
+			('Add a new category', ui_manager.new_category)
 		]
 		super(AddMenu, self).__init__(options, config)

@@ -116,18 +116,24 @@ def __print_table(table):
 	__print_results(table, table_enum)
 
 
-def show_table(titles, rows, table_name=None):
+def show_table(titles, rows, table_name=None, sep_rows=False):
 	'''
 	Print a pretty, formatted and spaced table
 	Parameters:
 		- header (iterable)	: Sequence with titles for each column
 		- rows (iterable)	: Sequence of rows in the table, 
 							  must contain len(header) items.
+		- table_name (str): if the caller want to, print a title
+		- sep_rows (bool): should the function print a seperetor between values
 	'''
 	
 	# If we have no data, create a NULL line
 	if len(rows) == 0:
 		rows.append(['NULL' for i in titles])
+
+	# Even if we don't have column titles, we still to know how many there are
+	if titles is None:
+		titles = ['' for x in rows[0]]
 
 	# Print a newline as a seperetor
 	print('')
@@ -154,20 +160,22 @@ def show_table(titles, rows, table_name=None):
 	# Print seperetor (the size of the biggest string + 3 for ' | ' seperetors)
 	print_seperetor(sum(biggest_strings) + (3 * (len(titles) + 1)))
 
-	# Craft header for the table
-	line = ['']
-	for idx, header in enumerate(titles):
-		# We use str.center to have nice formatting and spacing
-		line.append(str(header).center(biggest_strings[idx], ' '))
+	# If the titles are real and weren't created in the above if
+	if not (filter(None, titles) == []):
+		# Craft header for the table
+		line = ['']
+		for idx, header in enumerate(titles):
+			# We use str.center to have nice formatting and spacing
+			line.append(str(header).center(biggest_strings[idx], ' '))
 
-	# Append empty string to have another ' | ' at the end of the line
-	line.append('')
-	
-	# Print the header of the table
-	print(' | '.join(line))
+		# Append empty string to have another ' | ' at the end of the line
+		line.append('')
+		
+		# Print the header of the table
+		print(' | '.join(line))
 
-	# Print seperetor (the size of the biggest string + 3 for ' | ' seperetors)
-	print_seperetor(sum(biggest_strings) + (3 * (len(titles) + 1)))
+		# Print seperetor (the size of the biggest string + 3 for ' | ' seperetors)
+		print_seperetor(sum(biggest_strings) + (3 * (len(titles) + 1)))
 
 	# Print the rows
 	for row in rows:
@@ -181,8 +189,15 @@ def show_table(titles, rows, table_name=None):
 		# Print the line
 		print(' | '.join(line))
 
-	# Print seperetor (the size of the biggest string + 3 for ' | ' seperetors)
-	print_seperetor(sum(biggest_strings) + (3 * (len(titles) + 1)))
+		# If we should seperate values
+		if sep_rows:
+			# Print another seperetor
+			print_seperetor(sum(biggest_strings) + (3 * (len(titles) + 1)))
+
+	# If we are seperating values, there is already a seperator
+	if not sep_rows:
+		# Print seperetor (the size of the biggest string + 3 for ' | ' seperetors)
+		print_seperetor(sum(biggest_strings) + (3 * (len(titles) + 1)))
 
 	# Print a newline as another seperetor
 	print('')

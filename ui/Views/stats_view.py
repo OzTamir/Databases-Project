@@ -57,8 +57,7 @@ class StatsView(ViewBase):
 		# Get the sum of the customers purchases (the income)
 		income = self.db.sum_column('Purchases', 'Total', None, res_range)
 
-		return ('Total income for %s' % str(year), \
-				str(income) + self.config.currency)
+		return ('Total income', str(income) + self.config.currency)
 		
 	def total_expenses(self, year):
 		'''
@@ -91,8 +90,7 @@ class StatsView(ViewBase):
 			# Add the price of the order to the total
 			total += (amount * price)
 
-		return ('Total Expenses for %s' % str(year), \
-				str(total) + self.config.currency)
+		return ('Total Expenses', str(total) + self.config.currency)
 
 	def popular_products(self, year, amount=5):
 		'''
@@ -186,16 +184,18 @@ class StatsView(ViewBase):
 		year = '2015'#self.get_year()
 
 		# View titles
-		TITLE = '%s - Statistics Report'
-		COLUMNS = ('-', '-')
+		TITLE = 'Statistics Report for %s' % str(year)
+		COLUMNS = None
 
 		# Get the stats
 		income = self.total_income(year)
 		expenses = self.total_expenses(year)
 		most_populars = self.popular_products(year)
+		revenue = float(income[1][:-1]) - float(expenses[1][:-1])
+		total_revenue = ('Total Revenue', str(revenue) + self.config.currency)
 
 		# Print the stats in a nice table
-		show_table(COLUMNS, (income, expenses, most_populars), TITLE)
+		show_table(COLUMNS, (income, expenses, total_revenue, most_populars), TITLE, True)
 
 
 

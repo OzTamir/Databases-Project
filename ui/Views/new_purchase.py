@@ -102,6 +102,7 @@ class NewPurchase(ViewBase):
 
 		# Insert the purchase to the 'Purchases' Table
 		try:
+			# We don't commit yet, as we still update to enter PurchaseDetails
 			self.db.insert('Purchases', columns, values, False)
 		except ValueError, e:
 			logger.error('Error while adding purchase. Please try again.')
@@ -124,6 +125,9 @@ class NewPurchase(ViewBase):
 
 				# Insert it to the 'PurchasesItems' table
 				self.db.insert('PurchasesItems', PI_COLUMNS, values, False)
+
+				# Update the amount in the inventory
+				self.update_product(product, amount)
 		
 		# If there was any exception, do a rollback
 		except Exception, e:
@@ -134,6 +138,45 @@ class NewPurchase(ViewBase):
 		# Only if there were no errors, commit changes
 		else:
 			self.db.commit()
+
+
+	def update_product(self, product, amount):
+		'''
+		Update product's amount in the inventory
+		Parameters:
+			- products (iterable): an entry from Products table
+			- amount (int): the amount bought in the purchase
+		'''
+		## Constants ##
+
+		# For products table
+		PID_IDX = 0
+
+		# For inventory table
+		INVENTORY_TABLE = 'Inventory'
+		AMOUNT_COLUMN = 'UnitsInStock'
+		PRODUCT_COLUMN = 'Product'
+		PID_INVENTORY_IDX = 1
+		UNITS_IN_STOCK_IDX = 2
+
+		# Get the current amount in stock for this product
+		pid = product[PID_IDX]
+		product_in_inventory = self.db.get_single_result(INVENTORY_TABLE,\
+								 PRODUCT_COLUMN, pid)
+		current_amount = product_in_inventory[UNITS_IN_STOCK_IDX]
+
+		# Calculate the new amount in inventory
+		# TODO: If negative result, suggest to order more units
+		new_amount = max(0, current_amount - amount)
+
+		# Create the data needed for an update call
+		match = (PRODUCT_COLUMN, pid)
+		update_dict = {AMOUNT_COLUMN : new_amount}
+
+		# Update this column
+		# We won't put this in try/except since we do that in new_purchase()
+		self.db.update(INVENTORY_TABLE, match, update_dict, False)
+
 
 	# This method is used in new_order.py, so I made it static
 	@staticmethod
@@ -153,7 +196,7 @@ class NewPurchase(ViewBase):
 				return None
 			# If it was a mistake, make a tail recursive call to return a value
 			# This recursion saves us from having to recall in self.new_purchase()
-			return self.get_product_in_purchase()
+			return self.get_product_in_purchase(self)
 
 		# If we got a name, search by column 'ProductName'
 		if not product.isdigit():

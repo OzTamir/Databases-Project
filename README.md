@@ -29,10 +29,12 @@ You can tweak additonal settings by changing the other parameters in the config.
   - core/
     - __init__.py		: Package file
     
-    - config.py			: Defines Config, the configuration object
-    - database.py		: Defines Database, which is the wrapper for the MySQL object
-    - system.py			: Defines the System object, which is the main object in this project
-    - utils.py			: Defines various utility functions
+    - config.py			      : Defines Config, the configuration object
+    - database.py		      : Defines Database, which is the wrapper for the MySQL object
+    - system.py			      : Defines the System object, which is the main object in this project
+    - datebase_scheme.py  : The Database's scheme
+    - setup.py            : Setup the database scheme
+    - utils.py			      : Defines various utility functions
   
   - ui/
     - Menus/
@@ -48,6 +50,8 @@ You can tweak additonal settings by changing the other parameters in the config.
     - Views/
       - __init__.py         	: Package file
       - view_base.py		: Includes the base class for views
+
+      - redeem_order.py   : Redeem an order and add it to the inventory
       
       - inventory_view.py	: Defines a class that allows to view the inventory
       - suppliers_view.py 	: Defines a class that allows the user to view suppliers

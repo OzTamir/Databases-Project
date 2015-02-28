@@ -20,13 +20,16 @@ This package contains all the file, classes and functions that are
 the backbone of this project.
 
 Files:
-	- config.py 	: Defines Config, the configuration object
-	- database.py 	: Defines Database, which is the wrapper for the MySQL object
-	- system.py 	: Defines the System object, which is the main object in this project
-	- utils.py 		: Defines various utility functions
+	- config.py 			: Defines Config, the configuration object
+	- database.py 			: Defines Database, which is the wrapper for the MySQL object
+	- system.py 			: Defines the System object, which is the main object in this project
+	- datebase_scheme.py	: The Database's scheme
+	- setup.py 				: Setup the database scheme
+	- utils.py 				: Defines various utility functions
 '''
 
 from config import Config
 from database import Database
 from system import System
+from setup import Setup
 from utils import *

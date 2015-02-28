@@ -15,7 +15,7 @@
 #
 ####################################
 
-from database_scheme import TABLES, DROPS
+from database_scheme import TABLES, DROPS, DATA
 import utils
 import sys
 
@@ -39,9 +39,9 @@ class Setup(object):
 		# Since we might destroy data, inform the user
 		print('The system will now setup the database on the server.')
 		print('This might cause loss of data, exsiting scheme and such.')
-		quit = raw_input('Would you like to cancel and quit? (Y/N)')
+		quit = raw_input('Would you like to continue? (Y/N)')
 		# If he does want out,
-		if quit.lower() == 'y' or quit.lower() == 'yes':
+		if quit.lower() == 'n' or quit.lower() == 'no':
 			print('Database setup canceled, quitting.')
 			sys.exit(0)
 
@@ -49,14 +49,22 @@ class Setup(object):
 		self.db = db
 		self.config = config
 
-		# Else, run the setup
+		# Run the setup
 		self.run_setup()
+
+		# Ask if the user wants to populate the tables with sample data
+		quit = raw_input('Would you like to populate the DB with sample data? (Y/N)')
+		# If he does want out,
+		if quit.lower() == 'n' or quit.lower() == 'no':
+			return
+		# Else, fill it with data
+		self.populate_tables()
 
 	def run_setup(self):
 		'''
 		Create the database scheme on the db
 		'''
-		# Create the database and use it
+		# Use our DB
 		self.db.execute('USE `%s`;' % str(self.config.name))
 
 		# Drop all exsiting tables
@@ -77,6 +85,20 @@ class Setup(object):
 				logger.debug('Table %s created.' % str(name))
 
 			logger.debug('\n')
+
+		# Commit changes
+		self.db.commit()
+
+	def populate_tables(self):
+		'''
+		Populate the tables with sample data
+		'''
+		# Use our DB
+		self.db.execute('USE `%s`;' % str(self.config.name))
+
+		# Insert data
+		for insert in DATA:
+			self.db.execute(insert)
 
 		# Commit changes
 		self.db.commit()

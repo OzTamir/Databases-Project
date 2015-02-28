@@ -27,6 +27,16 @@ DROPS = [
 	"DROP TABLE IF EXISTS `PurchasesItems`;"
 ]
 
+DATA = [
+	"INSERT INTO `ProductCategories` VALUES (1,'Pastries');",
+	"INSERT INTO `Purchases` VALUES (1,1,1,'0000-00-00'),(9,4,4,'0000-00-00'),(10,5,17,'0000-00-00'),(11,7,19,'0000-00-00'),(12,3,15,'2015-02-24'),(13,3,3,'2015-02-25');",
+	"INSERT INTO `Suppliers` VALUES (1,'Simshon Pastries'),(2,'Yossi Corn');",
+	"INSERT INTO `Products` VALUES (1,'Corn',1,NULL,'Corn, as in Popcorn'),(8,'Burakas',5,1,'Yummy, filled with cheese');",
+	"INSERT INTO `Inventory` VALUES (1,1,4,2),(2,8,4,1);",
+	"INSERT INTO `PurchasesItems` VALUES (9,1,4),(10,8,3),(10,1,2),(11,8,3),(11,1,4),(12,8,3),(13,1,3);",
+	"INSERT INTO `Orders` VALUES (1,2,1,6,1,'2015-02-21',0),(2,2,1,2,1,'2015-02-25',1);"
+]
+
 TABLES = {}
 
 TABLES['Inventory'] = (

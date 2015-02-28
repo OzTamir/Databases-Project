@@ -49,6 +49,7 @@ TABLES['Orders'] = (
 	"  `Amount` int(11) DEFAULT '0',"
 	"  `PricePerUnit` float DEFAULT '0',"
 	"  `OrderDate` date NOT NULL,"
+	"  `Recived` tinyint(1) DEFAULT '0',"
 	"  PRIMARY KEY (`OID`),"
 	"  KEY `fk_PID_idx` (`ProductID`),"
 	"  KEY `fk_SID_idx` (`SupplierID`),"

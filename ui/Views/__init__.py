@@ -32,6 +32,8 @@ Files:
 	- new_order.py			: Defines a class for new orders
 	- new_category.py		: Defines a view for creating new categories
 
+	- redeem_order.py		: Redeem an order and add it to the inventory
+
 	- view_base.py 			: Includes the base class for views
 '''
 
@@ -51,5 +53,8 @@ from orders_view import OrdersView
 from products_view import ProductsView
 from categories_view import CategoriesView
 from stats_view import StatsView
+
+# Other
+from redeem_order import RedeemOrder
 
 

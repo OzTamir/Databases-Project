@@ -18,9 +18,6 @@
 from view_base import ViewBase
 from ui.ui_utils import *
 
-# We need InventoryView.get_product()
-from inventory_view import InventoryView
-
 class OrdersView(ViewBase):
 	''' View orders '''
 
@@ -40,7 +37,7 @@ class OrdersView(ViewBase):
 		# Get Orders details
 		entries = self.db.get_entries(ORDERS_TABLE)
 
-		self.view_orders(entries)
+		self.view_orders(self, entries)
 
 	def by_year(self):
 		'''
@@ -61,7 +58,7 @@ class OrdersView(ViewBase):
 		entries = self.db.search_range(ORDERS_TABLE, 'OrderDate', start,\
 										end)
 
-		self.view_orders(entries)
+		self.view_orders(self, entries)
 
 	def by_month(self):
 		'''
@@ -91,9 +88,11 @@ class OrdersView(ViewBase):
 		entries = self.db.search_range(ORDERS_TABLE, 'OrderDate', start,\
 										end)
 
-		self.view_orders(entries)
+		self.view_orders(self, entries)
 
-	def view_orders(self, entries):
+	# We need it in redeem_order.py, so I made it static
+	@staticmethod
+	def view_orders(self, entries, title='Orders'):
 		'''
 		View the orders table
 		'''
@@ -101,7 +100,7 @@ class OrdersView(ViewBase):
 		#### Constants ####
 		
 		ORDERS_VIEW_COLUMNS = ('OrderID', 'Product', '# Units', 'Total', \
-								'Supplier','Date')
+								'Supplier','Date', 'Order Recived')
 
 		# For Suppliers Table
 		SUPPLIERS_TABLE = 'Suppliers'
@@ -116,6 +115,7 @@ class OrdersView(ViewBase):
 		AMOUNT_IDX = 3
 		PRICE_PER_UNIT_IDX = 4
 		DATE_IDX = 5
+		RECIVED_IDX = 6
 
 		# For Products Table
 		PRODUCTS_TABLE = 'Products'
@@ -130,7 +130,7 @@ class OrdersView(ViewBase):
 		# Iterate over the orders
 		for idx, order in enumerate(entries):
 			# Get the details of the order
-			oid, sid, pid, amount, price_per_unit, date = order
+			oid, sid, pid, amount, price_per_unit, date, recvied = order
 			
 			# Get the supplier's name
 			supplier = self.db.get_single_result(SUPPLIERS_TABLE, 'SID', str(sid))
@@ -140,17 +140,21 @@ class OrdersView(ViewBase):
 			product = self.db.get_single_result(PRODUCTS_TABLE, 'PID', str(pid))
 			product_name = product[PRODUCT_NAME_IDX]
 			
+			# Convert the recive value to boolean
+			recvied = bool(recvied)
+			recived_text = ('True' * int(recvied)) + ('False' * int(not recvied))
+
 			# Create  a tuple with the values
 			values = (str(oid), str(product_name), str(amount), \
 						str(float(price_per_unit) * int(amount)) + \
 						self.config.currency, \
-						str(supplier_name), str(date))
+						str(supplier_name), str(date), recived_text)
 
 			# Add it to the orders list
 			orders.append(values)
 
 		# Print the table
-		show_table(ORDERS_VIEW_COLUMNS, orders, 'Orders')
+		show_table(ORDERS_VIEW_COLUMNS, orders, title)
 
 
 

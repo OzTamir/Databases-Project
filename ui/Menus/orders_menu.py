@@ -22,6 +22,7 @@ class OrdersMenu(MenuBase):
 	def __init__(self, config, ui_manager):
 		options = [
 			('Create new Orders', ui_manager.new_order),
+			('Redeem an Order', ui_manager.redeem_order),
 			('View All Orders', ui_manager.orders_view),
 			('Search by year', ui_manager.orders_view.by_year),
 			('Search by month', ui_manager.orders_view.by_month),

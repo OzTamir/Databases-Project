@@ -349,7 +349,6 @@ class Database(object):
 		query = query.replace("'", '')
 		return self.__iter_results(query, 'search')
 
-
 	def get_single_result(self, table, column, value):
 		'''
 		Get a single result from a table
@@ -455,7 +454,6 @@ class Database(object):
 		query = ' '.join([select_stmt, range_stmt])
 		return self.__get_results(query, 'search_range')
 
-
 	def sum_column(self, table, column, match=None, res_range=None):
 		'''
 		Get the sum of all the values in a column
@@ -529,7 +527,6 @@ class Database(object):
 		# Get the query string and return the results
 		query_str = ' '.join(query)
 		return self.__get_results(query_str, 'sorted_results')
-
 
 	def __del__(self):
 		'''

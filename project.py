@@ -20,8 +20,11 @@ from core import System
 import os
 
 def main():
-	# Clear the console screen
-	os.system('cls' if os.name == 'nt' else 'clear')
+	try:
+		# Clear the console screen
+		os.system('cls' if os.name == 'nt' else 'clear')
+	except:
+		pass
 	system = System('my_config.json')
 	system.ui_manager()
 

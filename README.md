@@ -75,18 +75,6 @@ You can tweak additonal settings by changing the other parameters in the config.
   - .gitignore			: Make git ignore configuration files and python compiled files
 
 ```
-
-***
-
-## TODO:
-Those are the things left to do before I submit the project. The sub-lists are by order of importance.
-
-  - Finish the actual project part: 
-    - Editing/Deleting products, categories, suppliers, orders
-  
-  - Minor improvments :
-    - Add a settings view, allowing to change the configuration
-    - Add a screen setup class, that will make sure the whole terminal window is us
   
   
   

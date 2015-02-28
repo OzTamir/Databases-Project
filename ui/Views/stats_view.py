@@ -57,6 +57,9 @@ class StatsView(ViewBase):
 		# Get the sum of the customers purchases (the income)
 		income = self.db.sum_column('Purchases', 'Total', None, res_range)
 
+		# Handle Nones
+		if income is None:
+			income = 0
 		return ('Total income', str(income) + self.config.currency)
 		
 	def total_expenses(self, year):
@@ -89,7 +92,11 @@ class StatsView(ViewBase):
 
 			# Add the price of the order to the total
 			total += (amount * price)
-
+		
+		# Handle Nones
+		if total is None:
+			total = 0
+		
 		return ('Total Expenses', str(total) + self.config.currency)
 
 	def popular_products(self, year, amount=5):
@@ -172,6 +179,10 @@ class StatsView(ViewBase):
 		# Format the result to a string
 		res_string = ' | '.join(products_names)
 
+		# Handle empty strings
+		if res_string == '':
+			res_string = 'Nothing yet...'
+
 		return ('Most Popular Products', res_string)
 
 
@@ -191,6 +202,18 @@ class StatsView(ViewBase):
 		income = self.total_income(year)
 		expenses = self.total_expenses(year)
 		most_populars = self.popular_products(year)
+		print(income)
+		print(expenses)
+		print(most_populars)
+		# Make sure we handle Nones
+		if income[1] is None:	
+			income = (income[0], '0$')
+		if expenses[1] is None:
+			expenses = (expenses[0], '0$')
+		if most_populars[1] is None:
+			most_populars = (most_populars[0], 'Nothing...')
+
+
 		revenue = float(income[1][:-1]) - float(expenses[1][:-1])
 		total_revenue = ('Total Revenue', str(revenue) + self.config.currency)
 

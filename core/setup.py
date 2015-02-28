@@ -15,12 +15,16 @@
 #
 ####################################
 
-import mysql.connector
-from mysql.connector import errorcode
-
 from database_scheme import TABLES, DROPS
 import utils
 import sys
+
+try:
+	import mysql.connector
+	from mysql.connector import errorcode
+except ImportError:
+	print('MySQL connector couldn\'t be found. Please reinstall and try again.')
+	sys.exit(0)
 
 logger = None
 

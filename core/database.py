@@ -16,10 +16,15 @@
 ####################################
 
 from __future__ import print_function
-import mysql.connector
-from mysql.connector import errorcode
-from mysql.connector.errors import *
 import sys
+try:
+	import mysql.connector
+	from mysql.connector import errorcode
+	from mysql.connector.errors import *
+except ImportError:
+	print('MySQL connector couldn\'t be found. Please reinstall and try again.')
+	sys.exit(0)
+
 import utils
 
 logger = None
